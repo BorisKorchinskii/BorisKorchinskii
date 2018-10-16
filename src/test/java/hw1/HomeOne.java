@@ -18,6 +18,7 @@ public class HomeOne extends TestBase {
 
     @Test
     public void homeOne() {
+
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
