@@ -8,7 +8,9 @@
     <artifactId>BorisKorchinskii</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
+    <properties>
+        <suiteXmlFile></suiteXmlFile>
+    </properties>
 
 
     <dependencies>
@@ -37,7 +39,7 @@
                 <version>2.22.1</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testing.xml</suiteXmlFile>
+                        <suiteXmlFile>src\test\resources\${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
