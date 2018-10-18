@@ -1,5 +1,6 @@
 package hw2.ex3;
 
+import base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,8 +21,8 @@ import static org.testng.AssertJUnit.assertNotNull;
 
 public class IndexPageContentTestAnnotation {
 
+    protected WebDriver driver;
     private long time;
-    private WebDriver driver;
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {
@@ -29,24 +30,24 @@ public class IndexPageContentTestAnnotation {
         time = currentTimeMillis();
     }
 
-    @AfterSuite(alwaysRun = true)
-    public void afterSuite() {
-        System.out.println("Test framework worked:" + (currentTimeMillis() - time));
-    }
-
     @BeforeClass
     public void beforeClass() {
         driver = new ChromeDriver();
     }
 
-    @AfterClass
-    public void afterClass() {
-        driver.close();
-    }
-
     @BeforeMethod
     public void beforeMethod() {
         driver.manage().window().maximize();
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void afterSuite() {
+        System.out.println("Test framework worked:" + (currentTimeMillis() - time));
+    }
+
+    @AfterClass
+    public void afterClass() {
+        driver.close();
     }
 
     @AfterMethod
@@ -56,11 +57,6 @@ public class IndexPageContentTestAnnotation {
 
     @Test
     public void checkIfElementsPresence() {
-
-        WebDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         //1 Open test site by URL
         driver.navigate().to("https://epam.github.io/JDI/index.html");
@@ -84,10 +80,10 @@ public class IndexPageContentTestAnnotation {
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
         ArrayList<String> items = new ArrayList<String>();
         ArrayList<String> equalstoitems = new ArrayList<String>();
-        WebElement home = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='index.html']")));
-        WebElement contactForm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='contacts.html']")));
-        WebElement service = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".dropdown-toggle")));
-        WebElement metalsAndColors = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='metals-colors.html']")));
+        WebElement home = driver.findElement(By.xpath("//a[@href='index.html']"));
+        WebElement contactForm = driver.findElement(By.xpath("//a[@href='contacts.html']"));
+        WebElement service = driver.findElement(By.cssSelector(".dropdown-toggle"));
+        WebElement metalsAndColors = driver.findElement(By.xpath("//a[@href='metals-colors.html']"));
         items.add(home.getText());
         items.add(contactForm.getText());
         items.add(service.getText());
@@ -100,10 +96,10 @@ public class IndexPageContentTestAnnotation {
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
         ArrayList<WebElement> imagesdisplayed = new ArrayList<WebElement>();
-        WebElement microscopeImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-practise")));
-        WebElement headphonesImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-custom")));
-        WebElement multiplatformImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-multi")));
-        WebElement rocketImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-base")));
+        WebElement microscopeImg = driver.findElement(By.cssSelector(".icon-practise"));
+        WebElement headphonesImg = driver.findElement(By.cssSelector(".icon-custom"));
+        WebElement multiplatformImg = driver.findElement(By.cssSelector(".icon-multi"));
+        WebElement rocketImg = driver.findElement(By.cssSelector(".icon-base"));
         imagesdisplayed.add(microscopeImg);
         imagesdisplayed.add(headphonesImg);
         imagesdisplayed.add(multiplatformImg);
