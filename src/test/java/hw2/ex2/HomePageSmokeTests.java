@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -16,15 +18,14 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertNotNull;
 
-public class HomePageSmokeTests extends TestBase {
+public class HomePageSmokeTests {
 
-    @Test (groups = "Smoke")
-    public void checkIfElementsPresenceOne() {
+
+    @Test(groups = "Smoke", priority = 1)
+    public void checkIfElementsPresenceTest1() {
 
         WebDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 10);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         //1 Open test site by URL
         driver.navigate().to("https://epam.github.io/JDI/index.html");
@@ -48,10 +49,10 @@ public class HomePageSmokeTests extends TestBase {
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
         ArrayList<String> items = new ArrayList<String>();
         ArrayList<String> equalstoitems = new ArrayList<String>();
-        WebElement home = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='index.html']")));
-        WebElement contactForm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='contacts.html']")));
-        WebElement service = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".dropdown-toggle")));
-        WebElement metalsAndColors = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='metals-colors.html']")));
+        WebElement home = driver.findElement(By.xpath("//a[@href='index.html']"));
+        WebElement contactForm = driver.findElement(By.xpath("//a[@href='contacts.html']"));
+        WebElement service = driver.findElement(By.cssSelector(".dropdown-toggle"));
+        WebElement metalsAndColors = driver.findElement(By.xpath("//a[@href='metals-colors.html']"));
         items.add(home.getText());
         items.add(contactForm.getText());
         items.add(service.getText());
@@ -64,10 +65,10 @@ public class HomePageSmokeTests extends TestBase {
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
         ArrayList<WebElement> imagesdisplayed = new ArrayList<WebElement>();
-        WebElement microscopeImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-practise")));
-        WebElement headphonesImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-custom")));
-        WebElement multiplatformImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-multi")));
-        WebElement rocketImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-base")));
+        WebElement microscopeImg = driver.findElement(By.cssSelector(".icon-practise"));
+        WebElement headphonesImg = driver.findElement(By.cssSelector(".icon-custom"));
+        WebElement multiplatformImg = driver.findElement(By.cssSelector(".icon-multi"));
+        WebElement rocketImg = driver.findElement(By.cssSelector(".icon-base"));
         imagesdisplayed.add(microscopeImg);
         imagesdisplayed.add(headphonesImg);
         imagesdisplayed.add(multiplatformImg);
@@ -146,13 +147,11 @@ public class HomePageSmokeTests extends TestBase {
         driver.close();
     }
 
-    @Test(groups = "Smoke")
-    public void checkIfElementsPresenceTwo() {
+    @Test(groups = "Smoke", priority = 2)
+    public void checkIfElementsPresenceTest2() {
 
         WebDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 10);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         //1 Open test site by URL
         driver.navigate().to("https://epam.github.io/JDI/index.html");
@@ -176,10 +175,10 @@ public class HomePageSmokeTests extends TestBase {
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
         ArrayList<String> items = new ArrayList<String>();
         ArrayList<String> equalstoitems = new ArrayList<String>();
-        WebElement home = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='index.html']")));
-        WebElement contactForm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='contacts.html']")));
-        WebElement service = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".dropdown-toggle")));
-        WebElement metalsAndColors = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='metals-colors.html']")));
+        WebElement home = driver.findElement(By.xpath("//a[@href='index.html']"));
+        WebElement contactForm = driver.findElement(By.xpath("//a[@href='contacts.html']"));
+        WebElement service = driver.findElement(By.cssSelector(".dropdown-toggle"));
+        WebElement metalsAndColors = driver.findElement(By.xpath("//a[@href='metals-colors.html']"));
         items.add(home.getText());
         items.add(contactForm.getText());
         items.add(service.getText());
@@ -192,10 +191,10 @@ public class HomePageSmokeTests extends TestBase {
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
         ArrayList<WebElement> imagesdisplayed = new ArrayList<WebElement>();
-        WebElement microscopeImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-practise")));
-        WebElement headphonesImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-custom")));
-        WebElement multiplatformImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-multi")));
-        WebElement rocketImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-base")));
+        WebElement microscopeImg = driver.findElement(By.cssSelector(".icon-practise"));
+        WebElement headphonesImg = driver.findElement(By.cssSelector(".icon-custom"));
+        WebElement multiplatformImg = driver.findElement(By.cssSelector(".icon-multi"));
+        WebElement rocketImg = driver.findElement(By.cssSelector(".icon-base"));
         imagesdisplayed.add(microscopeImg);
         imagesdisplayed.add(headphonesImg);
         imagesdisplayed.add(multiplatformImg);
@@ -274,13 +273,11 @@ public class HomePageSmokeTests extends TestBase {
         driver.close();
     }
 
-    @Test(groups = "Smoke")
-    public void checkIfElementsPresenceThree() {
+    @Test(groups = "Smoke", priority = 3)
+    public void checkIfElementsPresenceTest3() {
 
         WebDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 10);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         //1 Open test site by URL
         driver.navigate().to("https://epam.github.io/JDI/index.html");
@@ -304,10 +301,10 @@ public class HomePageSmokeTests extends TestBase {
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
         ArrayList<String> items = new ArrayList<String>();
         ArrayList<String> equalstoitems = new ArrayList<String>();
-        WebElement home = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='index.html']")));
-        WebElement contactForm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='contacts.html']")));
-        WebElement service = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".dropdown-toggle")));
-        WebElement metalsAndColors = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='metals-colors.html']")));
+        WebElement home = driver.findElement(By.xpath("//a[@href='index.html']"));
+        WebElement contactForm = driver.findElement(By.xpath("//a[@href='contacts.html']"));
+        WebElement service = driver.findElement(By.cssSelector(".dropdown-toggle"));
+        WebElement metalsAndColors = driver.findElement(By.xpath("//a[@href='metals-colors.html']"));
         items.add(home.getText());
         items.add(contactForm.getText());
         items.add(service.getText());
@@ -320,10 +317,10 @@ public class HomePageSmokeTests extends TestBase {
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
         ArrayList<WebElement> imagesdisplayed = new ArrayList<WebElement>();
-        WebElement microscopeImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-practise")));
-        WebElement headphonesImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-custom")));
-        WebElement multiplatformImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-multi")));
-        WebElement rocketImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-base")));
+        WebElement microscopeImg = driver.findElement(By.cssSelector(".icon-practise"));
+        WebElement headphonesImg = driver.findElement(By.cssSelector(".icon-custom"));
+        WebElement multiplatformImg = driver.findElement(By.cssSelector(".icon-multi"));
+        WebElement rocketImg = driver.findElement(By.cssSelector(".icon-base"));
         imagesdisplayed.add(microscopeImg);
         imagesdisplayed.add(headphonesImg);
         imagesdisplayed.add(multiplatformImg);

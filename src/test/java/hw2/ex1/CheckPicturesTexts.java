@@ -34,24 +34,16 @@ public class CheckPicturesTexts extends TestBase {
     @Test(dataProvider = "dataProviderMethod")
     public void checkIfTextEquals(int i, String data) {
 
-        //1 Open BR
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-
-        //2 Navigate
+        //1 Navigate
         driver.navigate().to("https://epam.github.io/JDI/index.html");
 
-        //3 Assert Title
+        //2 Assert Title
         assertEquals(driver.getTitle(), "Home Page");
 
-        //4 Assert that there are 4 texts on the Index Page under icons and they have proper text
+        //3 Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> iconstexts = driver.findElements(By.cssSelector(".benefit-txt"));
         for (WebElement e : iconstexts) {
             assertEquals(iconstexts.get(i).getText(), data);
         }
-
-        //5 Close BR
-        driver.quit();
     }
 }

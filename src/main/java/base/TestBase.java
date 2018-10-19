@@ -2,10 +2,8 @@ package base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.*;
 
 import static java.lang.System.currentTimeMillis;
 import static java.lang.System.setOut;
@@ -14,6 +12,7 @@ import static java.lang.System.setProperty;
 public class TestBase {
 
     protected WebDriver driver;
+    //public static final String token = "@@@@@$$$%%^";
     private long time;
 
     @BeforeSuite(alwaysRun = true)
