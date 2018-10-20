@@ -1,6 +1,8 @@
 package pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
@@ -10,7 +12,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 
-public class HomePageSelenide {
+public class HomePageSelenideCucumber {
 
     @FindBy(css = ".profile-photo")
     private SelenideElement profileButton;
@@ -27,14 +29,20 @@ public class HomePageSelenide {
     @FindBy(css = "h3.main-title")
     private SelenideElement mainTitle;
 
+/*    public HomePageSelenideCucumber {
+
+    }*/
+
     //================================methods===================================
 
     @Step("Open JDI Test Application - Home Page")
+    @When("^I'm on teh Home Page")
     public void openPage() {
         open("https://epam.github.io/JDI/index.html");
     }
 
     @Step
+    @When("^I login as user (.+) wth password (.+)")
     public void login(String name, String passwd) {
         profileButton.click();
         login.sendKeys(name);
@@ -49,10 +57,11 @@ public class HomePageSelenide {
         assertEquals(getWebDriver().getTitle(), "Home Page");
     }
 
-    @Step
+    @Then("^The browser title is Home Page")
     public void checkMainText() {
         mainTitle.shouldBe(visible);
         mainTitle.shouldHave(text("EPA FRAMEWORK WISHES…"));
-    }
-}
 
+    }
+
+}

@@ -1,44 +1,46 @@
 package lesson4;
 
 import base.SelenideTestBase;
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Flaky;
+import io.qameta.allure.Story;
+import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.HomePageSelenide;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.Selenide.page;
+import static enums.Users.PITER_CHALOVSKII;
 import static java.lang.System.setProperty;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Feature("Smoke tests")
+@Story("Home Page Testing")
+@Listeners(AllureAttachmentListener.class)
 public class SimpleTestSelenidePageObject extends SelenideTestBase {
 
     private HomePageSelenide homePageSelenide;
+
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         homePageSelenide = page(HomePageSelenide.class);
     }
 
+    @Flaky
     @Test
     public void simpleTest() {
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
 
-        // Open BR
+        //2 Navigate
         homePageSelenide.openPage();
 
-        // Assert Title
-        assertEquals(getWebDriver().getTitle(), "Home Page");
+        //3 Assert Title
+        homePageSelenide.checkTitle();
 
-        // Login
-        homePageSelenide.login("","");
+        //4 Login
+        homePageSelenide.login(PITER_CHALOVSKII.login, PITER_CHALOVSKII.password);
 
-        // Check mane title
-        SelenideElement mainTitle = $("h.3");
-        mainTitle.shouldBe(visible);
-        mainTitle.shouldHave(text("EPAM FRAMEWORK WISHES…"));
+        //5 Check main title
+        homePageSelenide.checkMainText();
     }
 }
