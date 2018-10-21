@@ -11,8 +11,8 @@
 
         <classes>
             <class name="hw2.ex2.HomePageSmokeTests"/>
-            <class name="hw2.ex2.HomePageRegressionAndSmoke"/>
-            <class name="hw2.ex2.HomePageRegressionSmokeParallel"/>
+            <class name="hw2.ex2.HomePageRegressionAndSmokeTests"/>
+            <class name="hw2.ex2.HomePageRegressionAndSmokeParallelTests"/>
         </classes>
 
     </test>

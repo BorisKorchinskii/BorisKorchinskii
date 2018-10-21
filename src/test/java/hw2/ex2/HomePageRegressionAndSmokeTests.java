@@ -1,23 +1,19 @@
 package hw2.ex2;
 
-import base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertNotNull;
 
-public class HomePageRegressionTests {
+public class HomePageRegressionAndSmokeTests {
 
     @Test(groups = "Regression", priority = 1)
     public void checkIfElementsPresenceTest1() {
@@ -229,7 +225,7 @@ public class HomePageRegressionTests {
         driver.close();
     }
 
-    @Test(groups = "Regression", priority = 3)
+    @Test(groups = "Smoke", priority = 3)
     public void checkIfElementsPresenceTest3() {
 
         WebDriver driver = new ChromeDriver();

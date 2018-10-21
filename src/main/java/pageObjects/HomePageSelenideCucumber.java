@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 
@@ -29,9 +30,9 @@ public class HomePageSelenideCucumber {
     @FindBy(css = "h3.main-title")
     private SelenideElement mainTitle;
 
-/*    public HomePageSelenideCucumber {
-
-    }*/
+    public HomePageSelenideCucumber() {
+        page(this);
+    }
 
     //================================methods===================================
 
@@ -53,15 +54,14 @@ public class HomePageSelenideCucumber {
     //================================checks===================================
 
     @Step
+    @Then("The browser title is Home Page$")
     public void checkTitle() {
         assertEquals(getWebDriver().getTitle(), "Home Page");
     }
 
-    @Then("^The browser title is Home Page")
-    public void checkMainText() {
-        mainTitle.shouldBe(visible);
-        mainTitle.shouldHave(text("EPA FRAMEWORK WISHES…"));
-
+    @Step
+    @Then("The user icon is displayed on the header")
+    public void checkUserIcon() {
+        profileButton.shouldBe(visible);
     }
-
 }

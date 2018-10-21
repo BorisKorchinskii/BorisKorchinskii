@@ -1,60 +1,159 @@
 package pageObjects;
 
+import base.TestBaseForObjectTestHW3;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class HomePage {
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
+public class HomePage extends TestBaseForObjectTestHW3 {
 
     @FindBy(css = ".profile-photo")
-    private WebElement profileButton;
+    private WebElement loginProfileButton;
 
     @FindBy(css = "[id = 'Name']")
-    private WebElement login;
+    private WebElement loginField;
 
     @FindBy(css = "[id = 'Password']")
-    private WebElement password;
+    private WebElement passwordField;
 
     @FindBy(css = ".login [type = 'submit']")
-    private WebElement submit;
+    private WebElement enterButton;
 
     @FindBy(css = ".profile-photo [ui = 'label']")
     private WebElement loggedinUserName;
 
-    @FindBy(xpath = "//a[@href='index.html']")
-    private WebElement homeNavBar;
+    @FindBy(css = ".nav > li")
+    private List<WebElement> navBarElements;
 
-    @FindBy(xpath = "//a[@href='contacts.html']")
-    private WebElement contactformNavBar;
+    @FindBy(css = ".benefit-icon")
+    private List<WebElement> benefitIconsImages;
 
-    @FindBy(css = ".dropdown-toggle")
-    private WebElement serviceNavBar;
+    //@FindBy(css = ".benefit-text']")
+    @FindBy(css = "div.benefit-icon+span")
+    private List<WebElement> benefitIconsText;
 
-    @FindBy(xpath = "//a[@href='metals-colors.html']")
-    private WebElement metalsandcolorsNavBar;
+    @FindBy(css = "h3.main-title.text-center")
+    private WebElement textOnMainTitle;
 
-    @FindBy(css = ".benefit-icon']")
-    private ArrayList<WebElement> homepageBenefitIcons;
+    @FindBy(css = "p.main-txt")
+    private WebElement titleContainingText;
 
-    @FindBy(css = ".benefit-text']")
-    private ArrayList<WebElement> underBenefitIconsText;
+    @FindBy(css = "[id = 'iframe']")
+    private WebElement iFrame;
 
-    @FindBy(css = "h3.main-title']")
-    private WebElement mainheaderTitle;
+    @FindBy(xpath = "//*[@id='epam_logo']")
+    private WebElement epamLogoIniFrame;
 
+    @FindBy(css = "[class='text-center'] a")
+    private WebElement jdiSubheader;
 
+    @FindBy(css = ".mCustomScrollBox")
+    private WebElement leftSection;
 
+    @FindBy(css = "footer")
+    private WebElement footer;
 
+    //=============================== Variables ===========================================
 
+    private List<String> benefitIconsContainsText = Arrays
+            .asList("To include good practices\nand ideas from successful\nEPAM project",
+                    "To be flexible and\ncustomizable",
+                    "To be multiplatform",
+                    "Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more…");
 
+    //=============================== Actions methods ========================================
 
+    public void navigateToPage(){
+        driver.navigate().to("https://epam.github.io/JDI/index.html");
+    }
 
-    public void login(String name, String passwd) {
-        profileButton.click();
-        login.sendKeys(name);
-        password.sendKeys(passwd);
-        submit.click();
+    public void login(String name, String pass) {
+        loginProfileButton.click();
+        loginField.sendKeys(name);
+        passwordField.sendKeys(pass);
+        enterButton.click();
+    }
+
+    public void userIsLogged() {
+        loggedinUserName.isDisplayed();
+        assertEquals(loggedinUserName
+                .getText(), "PITER CHAILOVSKII");
+    }
+
+    public void switchToOriginalWindow() {
+        driver.switchTo().defaultContent();
+    }
+
+    //=============================== Elements checks ==========================================
+
+    public void checkIfTitleIsVisible() {
+        assertEquals(driver.getTitle(), "Home Page");
+    }
+
+    public void checkIfHeaderItemsContainText() {
+        assertEquals(navBarElements.size(), 4);
+        for (WebElement element : navBarElements) {
+            assertTrue(element.isDisplayed());
+        }
+        assertEquals(navBarElements.get(0).getText(), "HOME");
+        assertEquals(navBarElements.get(1).getText(), "CONTACT FORM");
+        assertEquals(navBarElements.get(2).getText(), "SERVICE");
+        assertEquals(navBarElements.get(3).getText(), "METALS & COLORS");
+    }
+
+    public void checkIfImagesDisplays() {
+        assertEquals(benefitIconsImages.size(), 4);
+        for (WebElement images : benefitIconsImages) {
+            assertTrue(images.isDisplayed());
+        }
+    }
+
+    public void checkIfIconsContainText() {
+        assertEquals(benefitIconsText.size(), 4);
+        for (WebElement text : benefitIconsText) {
+            assertTrue(text.isDisplayed());
+            assertTrue(benefitIconsContainsText.contains(text.getText()));
+        }
+    }
+
+    public void checkMainHeaderHasText() {
+        String textOnMainTitleis = "EPAM FRAMEWORK WISHES…";
+        assertEquals(textOnMainTitle.getText(), textOnMainTitleis);
+        String mainTitleTextIs = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
+                "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, " +
+                "QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS " +
+                "AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
+        assertEquals(titleContainingText.getText(), mainTitleTextIs);
+    }
+
+    public void checkIframeIsVisible() {
+        assertTrue(iFrame.isDisplayed());
+    }
+
+    public void checkEpamLogoIsVisible() {
+        driver.switchTo().frame(iFrame);
+        assertTrue(epamLogoIniFrame.isDisplayed());
+    }
+
+    public void checkSubheaderTextt() {
+        assertTrue(jdiSubheader.isDisplayed());
+        assertEquals(jdiSubheader.getText(), "JDI GITHUB");
+    }
+
+    public void checkSubheaderHasLink() {
+        assertEquals(jdiSubheader.getAttribute("href"), "https://github.com/epam/JDI");
+    }
+
+    public void checkIfLeftSectionVisible() {
+        assertTrue(leftSection.isDisplayed());
+    }
+
+    public void checkIfFooterIsVisible() {
+        assertTrue(footer.isDisplayed());
     }
 }

@@ -1,5 +1,6 @@
-package lesson4;
+package lesson5;
 
+import base.SelenideTestBase;
 import base.SelenideTestBase;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Flaky;

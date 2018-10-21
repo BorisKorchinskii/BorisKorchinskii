@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
@@ -47,70 +48,49 @@ public class HomePageSmokeTests {
         assertEquals(driver.getTitle(), "Home Page");
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
-        ArrayList<String> items = new ArrayList<String>();
-        ArrayList<String> equalstoitems = new ArrayList<String>();
-        WebElement home = driver.findElement(By.xpath("//a[@href='index.html']"));
-        WebElement contactForm = driver.findElement(By.xpath("//a[@href='contacts.html']"));
-        WebElement service = driver.findElement(By.cssSelector(".dropdown-toggle"));
-        WebElement metalsAndColors = driver.findElement(By.xpath("//a[@href='metals-colors.html']"));
-        items.add(home.getText());
-        items.add(contactForm.getText());
-        items.add(service.getText());
-        items.add(metalsAndColors.getText());
-        equalstoitems.add("HOME");
-        equalstoitems.add("CONTACT FORM");
-        equalstoitems.add("SERVICE");
-        equalstoitems.add("METALS & COLORS");
-        assertEquals(items, equalstoitems);
+        List<WebElement> navBarElements = driver.findElements(By.cssSelector(".nav > li"));
+        assertEquals(navBarElements.size(), 4);
+        for (WebElement element : navBarElements) {
+            assertTrue(element.isDisplayed());
+        }
+        assertEquals(navBarElements.get(0).getText(), "HOME");
+        assertEquals(navBarElements.get(1).getText(), "CONTACT FORM");
+        assertEquals(navBarElements.get(2).getText(), "SERVICE");
+        assertEquals(navBarElements.get(3).getText(), "METALS & COLORS");
+
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
-        ArrayList<WebElement> imagesdisplayed = new ArrayList<WebElement>();
-        WebElement microscopeImg = driver.findElement(By.cssSelector(".icon-practise"));
-        WebElement headphonesImg = driver.findElement(By.cssSelector(".icon-custom"));
-        WebElement multiplatformImg = driver.findElement(By.cssSelector(".icon-multi"));
-        WebElement rocketImg = driver.findElement(By.cssSelector(".icon-base"));
-        imagesdisplayed.add(microscopeImg);
-        imagesdisplayed.add(headphonesImg);
-        imagesdisplayed.add(multiplatformImg);
-        imagesdisplayed.add(rocketImg);
-        for (WebElement o : imagesdisplayed) {
-            assertTrue(o.isDisplayed());
+        List<WebElement> benefitIconsImages = driver.findElements(By.cssSelector(".benefit-icon"));
+        assertEquals(benefitIconsImages.size(), 4);
+        for (WebElement images : benefitIconsImages) {
+            assertTrue(images.isDisplayed());
         }
 
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
-        ArrayList<String> undericontext = new ArrayList<String>();
-        ArrayList<String> tocompareundericontext = new ArrayList<String>();
-        WebElement microscopeText = driver.findElement(By.xpath("//div[@class ='row clerafix benefits']/div[1]"));
-        WebElement headphonesText = driver.findElement(By.xpath("//div[@class ='row clerafix benefits']/div[2]"));
-        WebElement multiplatformText = driver.findElement(By.xpath("//div[@class ='row clerafix benefits']/div[3]"));
-        WebElement rocketText = driver.findElement(By.xpath("//div[@class ='row clerafix benefits']/div[4]"));
-        undericontext.add(microscopeText.getText());
-        undericontext.add(headphonesText.getText());
-        undericontext.add(multiplatformText.getText());
-        undericontext.add(rocketText.getText());
-        tocompareundericontext
-                .add("To include good practices"
-                        + "\n" + "and ideas from successful"
-                        + "\n" + "EPAM project");
-        tocompareundericontext
-                .add("To be flexible and"
-                        + "\n" + "customizable");
-        tocompareundericontext
-                .add("To be multiplatform");
-        tocompareundericontext
-                .add("Already have good base"
-                        + "\n" + "(about 20 internal and"
-                        + "\n" + "some external projects),"
-                        + "\n" + "wish to get more…");
-        assertEquals(undericontext, tocompareundericontext);
+        List<WebElement> benefitIconsText = driver.findElements(By.cssSelector(".benefit-txt"));
+        assertEquals(benefitIconsText.size(), 4);
+        assertEquals(benefitIconsText.get(0)
+                .getText(), "To include good practices\n" +
+                "and ideas from successful\n" +
+                "EPAM project");
+        assertEquals(benefitIconsText.get(1)
+                .getText(), "To be flexible and\n" +
+                "customizable");
+        assertEquals(benefitIconsText.get(2)
+                .getText(), "To be multiplatform");
+        assertEquals(benefitIconsText.get(3)
+                .getText(), "Already have good base\n" +
+                "(about 20 internal and\n" +
+                "some external projects),\n" +
+                "wish to get more…");
 
         //9 Assert a text of the main header
-        WebElement mainTitle = driver.findElement(By.cssSelector("h3.main-title"));
-        assertTrue(mainTitle.isDisplayed());
-        assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
-        WebElement titleText = driver.findElement(By.cssSelector("[name = 'jdi-text']"));
-        assertTrue(titleText.isDisplayed());
-        assertEquals(titleText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
+        WebElement textOnMainTitle = driver.findElement(By.cssSelector("h3.main-title"));
+        assertTrue(textOnMainTitle.isDisplayed());
+        assertEquals(textOnMainTitle.getText(), "EPAM FRAMEWORK WISHES…");
+        WebElement titleContainingText = driver.findElement(By.cssSelector(".main-txt"));
+        assertTrue(titleContainingText.isDisplayed());
+        assertEquals(titleContainingText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
                 "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, " +
                 "QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE " +
                 "IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
@@ -133,14 +113,14 @@ public class HomePageSmokeTests {
         assertEquals(jdiSubheader.getText(), "JDI GITHUB");
 
         //14 Assert that JDI GITHUB is a link and has a proper URL
-        assertNotNull(jdiSubheader);
+        assertEquals(jdiSubheader.getAttribute("href"), "https://github.com/epam/JDI");
 
         //15 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector(".mCustomScrollBox"));
         assertTrue(leftSection.isDisplayed());
 
         //16 Assert that there is Footer
-        WebElement footer = driver.findElement(By.xpath("//footer/div/div"));
+        WebElement footer = driver.findElement(By.cssSelector("footer"));
         assertTrue(footer.isDisplayed());
 
         //17 Close Browser
@@ -173,70 +153,49 @@ public class HomePageSmokeTests {
         assertEquals(driver.getTitle(), "Home Page");
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
-        ArrayList<String> items = new ArrayList<String>();
-        ArrayList<String> equalstoitems = new ArrayList<String>();
-        WebElement home = driver.findElement(By.xpath("//a[@href='index.html']"));
-        WebElement contactForm = driver.findElement(By.xpath("//a[@href='contacts.html']"));
-        WebElement service = driver.findElement(By.cssSelector(".dropdown-toggle"));
-        WebElement metalsAndColors = driver.findElement(By.xpath("//a[@href='metals-colors.html']"));
-        items.add(home.getText());
-        items.add(contactForm.getText());
-        items.add(service.getText());
-        items.add(metalsAndColors.getText());
-        equalstoitems.add("HOME");
-        equalstoitems.add("CONTACT FORM");
-        equalstoitems.add("SERVICE");
-        equalstoitems.add("METALS & COLORS");
-        assertEquals(items, equalstoitems);
+        List<WebElement> navBarElements = driver.findElements(By.cssSelector(".nav > li"));
+        assertEquals(navBarElements.size(), 4);
+        for (WebElement element : navBarElements) {
+            assertTrue(element.isDisplayed());
+        }
+        assertEquals(navBarElements.get(0).getText(), "HOME");
+        assertEquals(navBarElements.get(1).getText(), "CONTACT FORM");
+        assertEquals(navBarElements.get(2).getText(), "SERVICE");
+        assertEquals(navBarElements.get(3).getText(), "METALS & COLORS");
+
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
-        ArrayList<WebElement> imagesdisplayed = new ArrayList<WebElement>();
-        WebElement microscopeImg = driver.findElement(By.cssSelector(".icon-practise"));
-        WebElement headphonesImg = driver.findElement(By.cssSelector(".icon-custom"));
-        WebElement multiplatformImg = driver.findElement(By.cssSelector(".icon-multi"));
-        WebElement rocketImg = driver.findElement(By.cssSelector(".icon-base"));
-        imagesdisplayed.add(microscopeImg);
-        imagesdisplayed.add(headphonesImg);
-        imagesdisplayed.add(multiplatformImg);
-        imagesdisplayed.add(rocketImg);
-        for (WebElement o : imagesdisplayed) {
-            assertTrue(o.isDisplayed());
+        List<WebElement> benefitIconsImages = driver.findElements(By.cssSelector(".benefit-icon"));
+        assertEquals(benefitIconsImages.size(), 4);
+        for (WebElement images : benefitIconsImages) {
+            assertTrue(images.isDisplayed());
         }
 
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
-        ArrayList<String> undericontext = new ArrayList<String>();
-        ArrayList<String> tocompareundericontext = new ArrayList<String>();
-        WebElement microscopeText = driver.findElement(By.xpath("//div[@class ='row clerafix benefits']/div[1]"));
-        WebElement headphonesText = driver.findElement(By.xpath("//div[@class ='row clerafix benefits']/div[2]"));
-        WebElement multiplatformText = driver.findElement(By.xpath("//div[@class ='row clerafix benefits']/div[3]"));
-        WebElement rocketText = driver.findElement(By.xpath("//div[@class ='row clerafix benefits']/div[4]"));
-        undericontext.add(microscopeText.getText());
-        undericontext.add(headphonesText.getText());
-        undericontext.add(multiplatformText.getText());
-        undericontext.add(rocketText.getText());
-        tocompareundericontext
-                .add("To include good practices"
-                        + "\n" + "and ideas from successful"
-                        + "\n" + "EPAM project");
-        tocompareundericontext
-                .add("To be flexible and"
-                        + "\n" + "customizable");
-        tocompareundericontext
-                .add("To be multiplatform");
-        tocompareundericontext
-                .add("Already have good base"
-                        + "\n" + "(about 20 internal and"
-                        + "\n" + "some external projects),"
-                        + "\n" + "wish to get more…");
-        assertEquals(undericontext, tocompareundericontext);
+        List<WebElement> benefitIconsText = driver.findElements(By.cssSelector(".benefit-txt"));
+        assertEquals(benefitIconsText.size(), 4);
+        assertEquals(benefitIconsText.get(0)
+                .getText(), "To include good practices\n" +
+                "and ideas from successful\n" +
+                "EPAM project");
+        assertEquals(benefitIconsText.get(1)
+                .getText(), "To be flexible and\n" +
+                "customizable");
+        assertEquals(benefitIconsText.get(2)
+                .getText(), "To be multiplatform");
+        assertEquals(benefitIconsText.get(3)
+                .getText(), "Already have good base\n" +
+                "(about 20 internal and\n" +
+                "some external projects),\n" +
+                "wish to get more…");
 
         //9 Assert a text of the main header
-        WebElement mainTitle = driver.findElement(By.cssSelector("h3.main-title"));
-        assertTrue(mainTitle.isDisplayed());
-        assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
-        WebElement titleText = driver.findElement(By.cssSelector("[name = 'jdi-text']"));
-        assertTrue(titleText.isDisplayed());
-        assertEquals(titleText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
+        WebElement textOnMainTitle = driver.findElement(By.cssSelector("h3.main-title"));
+        assertTrue(textOnMainTitle.isDisplayed());
+        assertEquals(textOnMainTitle.getText(), "EPAM FRAMEWORK WISHES…");
+        WebElement titleContainingText = driver.findElement(By.cssSelector(".main-txt"));
+        assertTrue(titleContainingText.isDisplayed());
+        assertEquals(titleContainingText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
                 "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, " +
                 "QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE " +
                 "IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
@@ -259,14 +218,14 @@ public class HomePageSmokeTests {
         assertEquals(jdiSubheader.getText(), "JDI GITHUB");
 
         //14 Assert that JDI GITHUB is a link and has a proper URL
-        assertNotNull(jdiSubheader);
+        assertEquals(jdiSubheader.getAttribute("href"), "https://github.com/epam/JDI");
 
         //15 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector(".mCustomScrollBox"));
         assertTrue(leftSection.isDisplayed());
 
         //16 Assert that there is Footer
-        WebElement footer = driver.findElement(By.xpath("//footer/div/div"));
+        WebElement footer = driver.findElement(By.cssSelector("footer"));
         assertTrue(footer.isDisplayed());
 
         //17 Close Browser
@@ -299,70 +258,49 @@ public class HomePageSmokeTests {
         assertEquals(driver.getTitle(), "Home Page");
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
-        ArrayList<String> items = new ArrayList<String>();
-        ArrayList<String> equalstoitems = new ArrayList<String>();
-        WebElement home = driver.findElement(By.xpath("//a[@href='index.html']"));
-        WebElement contactForm = driver.findElement(By.xpath("//a[@href='contacts.html']"));
-        WebElement service = driver.findElement(By.cssSelector(".dropdown-toggle"));
-        WebElement metalsAndColors = driver.findElement(By.xpath("//a[@href='metals-colors.html']"));
-        items.add(home.getText());
-        items.add(contactForm.getText());
-        items.add(service.getText());
-        items.add(metalsAndColors.getText());
-        equalstoitems.add("HOME");
-        equalstoitems.add("CONTACT FORM");
-        equalstoitems.add("SERVICE");
-        equalstoitems.add("METALS & COLORS");
-        assertEquals(items, equalstoitems);
+        List<WebElement> navBarElements = driver.findElements(By.cssSelector(".nav > li"));
+        assertEquals(navBarElements.size(), 4);
+        for (WebElement element : navBarElements) {
+            assertTrue(element.isDisplayed());
+        }
+        assertEquals(navBarElements.get(0).getText(), "HOME");
+        assertEquals(navBarElements.get(1).getText(), "CONTACT FORM");
+        assertEquals(navBarElements.get(2).getText(), "SERVICE");
+        assertEquals(navBarElements.get(3).getText(), "METALS & COLORS");
+
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
-        ArrayList<WebElement> imagesdisplayed = new ArrayList<WebElement>();
-        WebElement microscopeImg = driver.findElement(By.cssSelector(".icon-practise"));
-        WebElement headphonesImg = driver.findElement(By.cssSelector(".icon-custom"));
-        WebElement multiplatformImg = driver.findElement(By.cssSelector(".icon-multi"));
-        WebElement rocketImg = driver.findElement(By.cssSelector(".icon-base"));
-        imagesdisplayed.add(microscopeImg);
-        imagesdisplayed.add(headphonesImg);
-        imagesdisplayed.add(multiplatformImg);
-        imagesdisplayed.add(rocketImg);
-        for (WebElement o : imagesdisplayed) {
-            assertTrue(o.isDisplayed());
+        List<WebElement> benefitIconsImages = driver.findElements(By.cssSelector(".benefit-icon"));
+        assertEquals(benefitIconsImages.size(), 4);
+        for (WebElement images : benefitIconsImages) {
+            assertTrue(images.isDisplayed());
         }
 
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
-        ArrayList<String> undericontext = new ArrayList<String>();
-        ArrayList<String> tocompareundericontext = new ArrayList<String>();
-        WebElement microscopeText = driver.findElement(By.xpath("//div[@class ='row clerafix benefits']/div[1]"));
-        WebElement headphonesText = driver.findElement(By.xpath("//div[@class ='row clerafix benefits']/div[2]"));
-        WebElement multiplatformText = driver.findElement(By.xpath("//div[@class ='row clerafix benefits']/div[3]"));
-        WebElement rocketText = driver.findElement(By.xpath("//div[@class ='row clerafix benefits']/div[4]"));
-        undericontext.add(microscopeText.getText());
-        undericontext.add(headphonesText.getText());
-        undericontext.add(multiplatformText.getText());
-        undericontext.add(rocketText.getText());
-        tocompareundericontext
-                .add("To include good practices"
-                        + "\n" + "and ideas from successful"
-                        + "\n" + "EPAM project");
-        tocompareundericontext
-                .add("To be flexible and"
-                        + "\n" + "customizable");
-        tocompareundericontext
-                .add("To be multiplatform");
-        tocompareundericontext
-                .add("Already have good base"
-                        + "\n" + "(about 20 internal and"
-                        + "\n" + "some external projects),"
-                        + "\n" + "wish to get more…");
-        assertEquals(undericontext, tocompareundericontext);
+        List<WebElement> benefitIconsText = driver.findElements(By.cssSelector(".benefit-txt"));
+        assertEquals(benefitIconsText.size(), 4);
+        assertEquals(benefitIconsText.get(0)
+                .getText(), "To include good practices\n" +
+                "and ideas from successful\n" +
+                "EPAM project");
+        assertEquals(benefitIconsText.get(1)
+                .getText(), "To be flexible and\n" +
+                "customizable");
+        assertEquals(benefitIconsText.get(2)
+                .getText(), "To be multiplatform");
+        assertEquals(benefitIconsText.get(3)
+                .getText(), "Already have good base\n" +
+                "(about 20 internal and\n" +
+                "some external projects),\n" +
+                "wish to get more…");
 
         //9 Assert a text of the main header
-        WebElement mainTitle = driver.findElement(By.cssSelector("h3.main-title"));
-        assertTrue(mainTitle.isDisplayed());
-        assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
-        WebElement titleText = driver.findElement(By.cssSelector("[name = 'jdi-text']"));
-        assertTrue(titleText.isDisplayed());
-        assertEquals(titleText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
+        WebElement textOnMainTitle = driver.findElement(By.cssSelector("h3.main-title"));
+        assertTrue(textOnMainTitle.isDisplayed());
+        assertEquals(textOnMainTitle.getText(), "EPAM FRAMEWORK WISHES…");
+        WebElement titleContainingText = driver.findElement(By.cssSelector(".main-txt"));
+        assertTrue(titleContainingText.isDisplayed());
+        assertEquals(titleContainingText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
                 "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, " +
                 "QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE " +
                 "IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
@@ -385,14 +323,14 @@ public class HomePageSmokeTests {
         assertEquals(jdiSubheader.getText(), "JDI GITHUB");
 
         //14 Assert that JDI GITHUB is a link and has a proper URL
-        assertNotNull(jdiSubheader);
+        assertEquals(jdiSubheader.getAttribute("href"), "https://github.com/epam/JDI");
 
         //15 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector(".mCustomScrollBox"));
         assertTrue(leftSection.isDisplayed());
 
         //16 Assert that there is Footer
-        WebElement footer = driver.findElement(By.xpath("//footer/div/div"));
+        WebElement footer = driver.findElement(By.cssSelector("footer"));
         assertTrue(footer.isDisplayed());
 
         //17 Close Browser
