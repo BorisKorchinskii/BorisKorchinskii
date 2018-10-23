@@ -1,7 +1,7 @@
 package lesson2;
 
-import dataProviders.DataProviders;
 import base.TestBase;
+import dataProviders.DataProviders;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,8 +10,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
-
-import static org.testng.Assert.assertEquals;
 
 public class SimpleTestDataProvider extends TestBase {
 

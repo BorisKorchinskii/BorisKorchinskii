@@ -19,13 +19,6 @@ public class IndexPageContentTestSoftAssertions extends TestBase {
     SoftAssert softAssert = new SoftAssert();
 
     protected WebDriver driver;
-    private long time;
-
-    @BeforeSuite(alwaysRun = true)
-    public void beforeSuite() {
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
-        time = currentTimeMillis();
-    }
 
     @BeforeClass
     public void beforeClass() {
@@ -35,11 +28,6 @@ public class IndexPageContentTestSoftAssertions extends TestBase {
     @BeforeMethod
     public void beforeMethod() {
         driver.manage().window().maximize();
-    }
-
-    @AfterSuite(alwaysRun = true)
-    public void afterSuite() {
-        System.out.println("Test framework worked:" + (currentTimeMillis() - time));
     }
 
     @AfterClass

@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 
-public class HomePageSelenide extends TestBaseForObjectTestHW4 {
+public class ServicePageSelenide extends TestBaseForObjectTestHW4 {
 
     @FindBy(css = ".profile-photo")
     private SelenideElement loginProfileButton;

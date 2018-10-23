@@ -1,23 +1,25 @@
 package hw3;
 
-import base.TestBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import pageObjects.HomePage;
 
 import java.util.concurrent.TimeUnit;
 
 import static enums.Users.PITER_CHAILOVSKII;
 
-public class IndexPageContentUsingPageObjectsTest extends TestBase {
+public class IndexPageContentUsingPageObjectsTest {
 
     private WebDriver driver;
     private HomePage homePage;
 
     @BeforeClass
-    public  void  beforClass(){
+    public void beforClass() {
         driver = new ChromeDriver();
         homePage = PageFactory.initElements(driver, HomePage.class);
 

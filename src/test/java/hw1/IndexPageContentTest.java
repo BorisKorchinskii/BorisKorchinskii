@@ -16,13 +16,6 @@ import static org.testng.Assert.assertTrue;
 public class IndexPageContentTest {
 
     protected WebDriver driver;
-    private long time;
-
-    @BeforeSuite(alwaysRun = true)
-    public void beforeSuite() {
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
-        time = currentTimeMillis();
-    }
 
     @BeforeClass
     public void beforeClass() {
@@ -32,11 +25,6 @@ public class IndexPageContentTest {
     @BeforeMethod
     public void beforeMethod() {
         driver.manage().window().maximize();
-    }
-
-    @AfterSuite(alwaysRun = true)
-    public void afterSuite() {
-        System.out.println("Test framework worked:" + (currentTimeMillis() - time));
     }
 
     @AfterClass

@@ -14,12 +14,9 @@ import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static org.testng.Assert.assertEquals;
+import static com.codeborne.selenide.Selenide.*;
 
-public class HomePageSelenide extends TestBaseForObjectTestHW4 {
+public class DataPageSelenide extends TestBaseForObjectTestHW4 {
 
     @FindBy(css = ".profile-photo")
     private SelenideElement loginProfileButton;
@@ -102,6 +99,12 @@ public class HomePageSelenide extends TestBaseForObjectTestHW4 {
     @FindBy(css = "[class='label-checkbox'] > input")
     private List<SelenideElement> differentElementsPageCheckboxesStatus;
 
+    @FindBy(xpath = "//div[@class='ui-slider-range ui-widget-header ui-corner-all']/preceding-sibling::a")
+    private SelenideElement leftSliderHandle;
+
+    @FindBy(css = "div[class*='ui-slider-range'] + a")
+    private SelenideElement rightSliderHandle;
+
     //=============================== Actions methods ========================================
 
     public void navigateToPage(String navigateTo) {
@@ -119,44 +122,63 @@ public class HomePageSelenide extends TestBaseForObjectTestHW4 {
         loggedinUserName.shouldHave(text(users.isDisplayed));
     }
 
-    public void openDifferentElementsPageViaHeaderServiceMenu() {
+    public void openViaHeaderServiceMenu() {
         navBarElements.get(2).click();
-        serviceDropdownElements.get(6)
-                .shouldHave(text("DIFFERENT ELEMENTS")).click();
+        serviceDropdownElements.get(1)
+                .shouldHave(text("DATES")).click();
     }
 
-    public void selectDifferentElementsPageWaterWindCheckboxes(Checkboxes... checkboxes) {
+    public void selectCheckboxes(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
             $$(differentElementsPageCheckboxes)
                     .findBy(text(checkbox.checkboxesName)).click();
         }
     }
 
-    public void selectDifferentElementsSelenRadioButton(Radiobuttons... radiobuttons) {
+    public void selectRadioButton(Radiobuttons... radiobuttons) {
         for (Radiobuttons radiobutton : radiobuttons) {
             $$(differentElementsPageRadioButtons)
                     .findBy(text(radiobutton.radiobuttonsType)).click();
         }
     }
 
-    public void selectifferentElementsYellowFromDropdown(Dropdowns dropdowns) {
+    public void selectFromDropdown(Dropdowns dropdowns) {
         differentElementsPageColorsDropdown.hover().click();
         differentElementsPageColorsDropdownPositions
                 .find(text(dropdowns.dropdownsColor)).click();
     }
 
-    public void unselectDifferentElementsPageWaterWindCheckboxes(Checkboxes... checkboxes) {
+    public void unselectdCheckboxes(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
             $$(differentElementsPageCheckboxes)
                     .findBy(text(checkbox.checkboxesName)).click();
         }
     }
 
-    //=============================== Elements checkers ==========================================
+    //public void dargAndDropSliders(Sliders left, Sliders right) {
+        public void dargAndDropSliders() {
+/*        if (left) {
+            target = $((String) args[0]);
+        }
+        else if (args[0] instanceof WebElement) {
+            target = $((WebElement) args[0]);
+        }*/
+        rightSliderHandle.shouldBe(visible);
+        actions().dragAndDrop(leftSliderHandle, rightSliderHandle).perform();
 
-    public void checkIfTitleIsVisible() {
-        assertEquals(getWebDriver().getTitle(), "Home Page");
+/*        Actions builder = new Actions(getWebDriver());
+        if (leftSliderInRange2.getLocation().x == rightSliderInRange2.getLocation().x && rightSliderInRange2.getLocation().x > 1000) {
+            builder.clickAndHold(leftSliderInRange2).moveByOffset(leftSlider.xAxisCoordinate - leftSliderInRange2.getLocation().x, 0).release().perform();
+            builder.clickAndHold(rightSliderInRange2).moveByOffset(rightSlider.xAxisCoordinate - rightSliderInRange2.getLocation().x, 0).release().perform();
+        } else {
+            builder.clickAndHold(rightSliderInRange2).moveByOffset(rightSlider.xAxisCoordinate - rightSliderInRange2.getLocation().x, 0).release().perform();
+            builder.clickAndHold(leftSliderInRange2).moveByOffset(leftSlider.xAxisCoordinate - leftSliderInRange2.getLocation().x, 0).release().perform();
+        }*/
     }
+
+
+
+    //=============================== Elements checkers ==========================================
 
     public void checkServiceHeaderContainsOptions() {
         navBarElements.get(2).click();
@@ -190,7 +212,7 @@ public class HomePageSelenide extends TestBaseForObjectTestHW4 {
         serviceSubCategoryLeftElements.get(7).shouldHave(text("Performance"));
     }
 
-    public void checkOnDifferentElementsPageNeededElementsVisible() {
+    public void checkPageNeededElementsVisible() {
         $$(differentElementsPageCheckboxes)
                 .shouldHaveSize(4)
                 .shouldHave(texts("Water", "Earth", "Wind", "Fire"));
@@ -204,15 +226,15 @@ public class HomePageSelenide extends TestBaseForObjectTestHW4 {
                 .shouldHave(value("BUTTON"));
     }
 
-    public void checkIfDifferentElementsPageRightSectionVisible() {
+    public void checkIfRightSectionVisible() {
         differentElementsPageRightSection.isDisplayed();
     }
 
-    public void checkIfDifferentElementsPageLeftSectionVisible() {
+    public void checkIfLeftSectionVisible() {
         differentElementsPageLeftSection.isDisplayed();
     }
 
-    public void checkIfDifferentElementsPageLogPannelContainsCheckboxStatusText(Checkboxes... checkboxes) {
+    public void checkIfLogPannelContainsCheckboxStatusText(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
             if ($$(differentElementsPageCheckboxesStatus).get(checkbox.checkboxesPosition)
                     .isSelected()) {
@@ -223,20 +245,20 @@ public class HomePageSelenide extends TestBaseForObjectTestHW4 {
         }
     }
 
-    public void checkIfDifferentElementsPageLogPannelContainsRadioButtonStatusText(Radiobuttons radiobuttons) {
+    public void checkIfLogPannelContainsRadioButtonStatusText(Radiobuttons radiobuttons) {
         $(differentElementsPageLogsPanel)
                 .shouldBe(visible)
                 .shouldHave(text("metal: value changed to " + radiobuttons.radiobuttonsType));
     }
 
 
-    public void checkIfDifferentElementsPageLogPannelContainsDropdownStatusText(Dropdowns dropdowns) {
+    public void checkIfLogPannelContainsDropdownStatusText(Dropdowns dropdowns) {
         $(differentElementsPageLogsPanel)
                 .shouldBe(visible)
                 .shouldHave(text("Colors: value changed to " + dropdowns.dropdownsColor));
     }
 
-    public void checkIfDifferentElementsPageLogPannelContainsUnselectedCheckboxStatusText(Checkboxes... checkboxes) {
+    public void checkIfLogPannelContainsUnselectedCheckboxStatusText(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
             if ($$(differentElementsPageCheckboxesStatus).get(checkbox.checkboxesPosition)
                     .is(not(selected))) {
