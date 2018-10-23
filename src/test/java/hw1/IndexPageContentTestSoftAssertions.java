@@ -2,18 +2,55 @@ package hw1;
 
 import base.TestBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.Test;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
+import static java.lang.System.currentTimeMillis;
+import static java.lang.System.setProperty;
 import static org.testng.Assert.assertTrue;
 
 public class IndexPageContentTestSoftAssertions extends TestBase {
 
     SoftAssert softAssert = new SoftAssert();
+
+    protected WebDriver driver;
+    private long time;
+
+    @BeforeSuite(alwaysRun = true)
+    public void beforeSuite() {
+        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+        time = currentTimeMillis();
+    }
+
+    @BeforeClass
+    public void beforeClass() {
+        driver = new ChromeDriver();
+    }
+
+    @BeforeMethod
+    public void beforeMethod() {
+        driver.manage().window().maximize();
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void afterSuite() {
+        System.out.println("Test framework worked:" + (currentTimeMillis() - time));
+    }
+
+    @AfterClass
+    public void afterClass() {
+        driver.close();
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        System.out.println(driver.getTitle());
+    }
 
     @Test
     public void checkIfElementsPresenceUseSoftAssertions() {

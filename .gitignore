@@ -1,3 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 /BorisKorchinskii.iml
 /.idea/
+/target/**
+/build/reports/tests/

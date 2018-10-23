@@ -1,16 +1,15 @@
 package pageObjects;
 
-import base.TestBaseForObjectTestHW3;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class HomePage extends TestBaseForObjectTestHW3 {
+public class HomePage {
 
     @FindBy(css = ".profile-photo")
     private WebElement loginProfileButton;
@@ -33,8 +32,7 @@ public class HomePage extends TestBaseForObjectTestHW3 {
     @FindBy(css = ".benefit-icon")
     private List<WebElement> benefitIconsImages;
 
-    //@FindBy(css = ".benefit-text']")
-    @FindBy(css = "div.benefit-icon+span")
+    @FindBy(css = "div.benefit-icon + span")
     private List<WebElement> benefitIconsText;
 
     @FindBy(css = "h3.main-title.text-center")
@@ -46,7 +44,7 @@ public class HomePage extends TestBaseForObjectTestHW3 {
     @FindBy(css = "[id = 'iframe']")
     private WebElement iFrame;
 
-    @FindBy(xpath = "//*[@id='epam_logo']")
+    @FindBy(css = "#epam_logo")
     private WebElement epamLogoIniFrame;
 
     @FindBy(css = "[class='text-center'] a")
@@ -58,17 +56,9 @@ public class HomePage extends TestBaseForObjectTestHW3 {
     @FindBy(css = "footer")
     private WebElement footer;
 
-    //=============================== Variables ===========================================
-
-    private List<String> benefitIconsContainsText = Arrays
-            .asList("To include good practices\nand ideas from successful\nEPAM project",
-                    "To be flexible and\ncustomizable",
-                    "To be multiplatform",
-                    "Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more…");
-
     //=============================== Actions methods ========================================
 
-    public void navigateToPage(){
+    public void navigateToPage(WebDriver driver) {
         driver.navigate().to("https://epam.github.io/JDI/index.html");
     }
 
@@ -81,17 +71,16 @@ public class HomePage extends TestBaseForObjectTestHW3 {
 
     public void userIsLogged() {
         loggedinUserName.isDisplayed();
-        assertEquals(loggedinUserName
-                .getText(), "PITER CHAILOVSKII");
+        assertEquals(loggedinUserName.getText(), "PITER CHAILOVSKII");
     }
 
-    public void switchToOriginalWindow() {
+    public void switchToOriginalWindow(WebDriver driver) {
         driver.switchTo().defaultContent();
     }
 
     //=============================== Elements checks ==========================================
 
-    public void checkIfTitleIsVisible() {
+    public void checkIfTitleIsVisible(WebDriver driver) {
         assertEquals(driver.getTitle(), "Home Page");
     }
 
@@ -115,10 +104,20 @@ public class HomePage extends TestBaseForObjectTestHW3 {
 
     public void checkIfIconsContainText() {
         assertEquals(benefitIconsText.size(), 4);
-        for (WebElement text : benefitIconsText) {
-            assertTrue(text.isDisplayed());
-            assertTrue(benefitIconsContainsText.contains(text.getText()));
-        }
+        assertEquals(benefitIconsText.get(0)
+                .getText(), "To include good practices\n" +
+                "and ideas from successful\n" +
+                "EPAM project");
+        assertEquals(benefitIconsText.get(1)
+                .getText(), "To be flexible and\n" +
+                "customizable");
+        assertEquals(benefitIconsText.get(2)
+                .getText(), "To be multiplatform");
+        assertEquals(benefitIconsText.get(3)
+                .getText(), "Already have good base\n" +
+                "(about 20 internal and\n" +
+                "some external projects),\n" +
+                "wish to get more…");
     }
 
     public void checkMainHeaderHasText() {
@@ -135,7 +134,7 @@ public class HomePage extends TestBaseForObjectTestHW3 {
         assertTrue(iFrame.isDisplayed());
     }
 
-    public void checkEpamLogoIsVisible() {
+    public void checkEpamLogoIsVisible(WebDriver driver) {
         driver.switchTo().frame(iFrame);
         assertTrue(epamLogoIniFrame.isDisplayed());
     }

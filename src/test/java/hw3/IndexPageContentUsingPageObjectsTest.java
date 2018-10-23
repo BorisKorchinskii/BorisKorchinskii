@@ -1,30 +1,47 @@
 package hw3;
 
 import base.TestBase;
-import base.TestBaseForObjectTestHW3;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageObjects.HomePage;
-
 
 import java.util.concurrent.TimeUnit;
 
 import static enums.Users.PITER_CHAILOVSKII;
 
-public class IndexPageContentUsingPageObjectsTest extends TestBaseForObjectTestHW3 {
+public class IndexPageContentUsingPageObjectsTest extends TestBase {
+
+    private WebDriver driver;
+    private HomePage homePage;
+
+    @BeforeClass
+    public  void  beforClass(){
+        driver = new ChromeDriver();
+        homePage = PageFactory.initElements(driver, HomePage.class);
+
+    }
+
+    @BeforeMethod
+    public void beforeClass() {
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+    }
+
+    @AfterMethod
+    public void afterClass() {
+        driver.close();
+    }
 
     @Test
     public void checkIfElementsPresence() {
 
         //1 Open test site by URL
-        homePage.navigateToPage();
+        homePage.navigateToPage(driver);
 
         //2 Assert Browser title
-        homePage.checkIfTitleIsVisible();
+        homePage.checkIfTitleIsVisible(driver);
 
         //3 Perform login
         homePage.login(PITER_CHAILOVSKII.login, PITER_CHAILOVSKII.password);
@@ -33,7 +50,7 @@ public class IndexPageContentUsingPageObjectsTest extends TestBaseForObjectTestH
         homePage.userIsLogged();
 
         //5 Assert Browser title
-        homePage.checkIfTitleIsVisible();
+        homePage.checkIfTitleIsVisible(driver);
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
         homePage.checkIfHeaderItemsContainText();
@@ -51,10 +68,10 @@ public class IndexPageContentUsingPageObjectsTest extends TestBaseForObjectTestH
         homePage.checkIframeIsVisible();
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
-        homePage.checkEpamLogoIsVisible();
+        homePage.checkEpamLogoIsVisible(driver);
 
         //12 Switch to original window back
-        homePage.switchToOriginalWindow();
+        homePage.switchToOriginalWindow(driver);
 
         //13 Assert a text of the sub header
         homePage.checkSubheaderTextt();

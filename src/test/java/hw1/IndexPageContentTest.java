@@ -1,23 +1,53 @@
 package hw1;
 
-import base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
+import static java.lang.System.currentTimeMillis;
+import static java.lang.System.setProperty;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static org.testng.AssertJUnit.assertNotNull;
 
-public class IndexPageContentTest extends TestBase {
+public class IndexPageContentTest {
+
+    protected WebDriver driver;
+    private long time;
+
+    @BeforeSuite(alwaysRun = true)
+    public void beforeSuite() {
+        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+        time = currentTimeMillis();
+    }
+
+    @BeforeClass
+    public void beforeClass() {
+        driver = new ChromeDriver();
+    }
+
+    @BeforeMethod
+    public void beforeMethod() {
+        driver.manage().window().maximize();
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void afterSuite() {
+        System.out.println("Test framework worked:" + (currentTimeMillis() - time));
+    }
+
+    @AfterClass
+    public void afterClass() {
+        driver.close();
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        System.out.println(driver.getTitle());
+    }
 
     @Test
     public void checkIfElementsPresence() {

@@ -9,11 +9,10 @@ import pageObjects.HomePage;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.System.currentTimeMillis;
-import static java.lang.System.setProperty;
 
 public class TestBaseForObjectTestHW3 {
 
-    protected static WebDriver driver;
+    protected  WebDriver driver;
     protected HomePage homePage;
     private long time;
 
@@ -25,10 +24,6 @@ public class TestBaseForObjectTestHW3 {
         time = currentTimeMillis();
     }
 
-    @BeforeMethod
-    public void beforeMethod() {
-        homePage = PageFactory.initElements(driver, HomePage.class);
-    }
 
     @AfterSuite
     public void afterClass() {
