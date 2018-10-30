@@ -24,7 +24,7 @@ public class HomePage {
     private WebElement enterButton;
 
     @FindBy(css = ".profile-photo [ui = 'label']")
-    private WebElement loggedinUserName;
+    private WebElement loggedInUserName;
 
     @FindBy(css = ".nav > li")
     private List<WebElement> navBarElements;
@@ -70,8 +70,8 @@ public class HomePage {
     }
 
     public void userIsLogged() {
-        loggedinUserName.isDisplayed();
-        assertEquals(loggedinUserName.getText(), "PITER CHAILOVSKII");
+        loggedInUserName.isDisplayed();
+        assertEquals(loggedInUserName.getText(), "PITER CHAILOVSKII");
     }
 
     public void switchToOriginalWindow(WebDriver driver) {

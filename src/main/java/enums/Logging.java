@@ -42,5 +42,5 @@ public enum Logging {
         public String toString() {
             return "70 link clicked";
         }
-    },
+    }
 }
