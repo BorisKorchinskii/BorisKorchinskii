@@ -117,11 +117,11 @@ public class HomePage {
                 .getText(), "Already have good base\n" +
                 "(about 20 internal and\n" +
                 "some external projects),\n" +
-                "wish to get moreâ€¦");
+                "wish to get more…");
     }
 
     public void checkMainHeaderHasText() {
-        String textOnMainTitleIs = "EPAM FRAMEWORK WISHESâ€¦";
+        String textOnMainTitleIs = "EPAM FRAMEWORK WISHES…";
         assertEquals(textOnMainTitle.getText(), textOnMainTitleIs);
         String mainTitleTextIs = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
                 "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, " +
