@@ -10,8 +10,6 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-import static java.lang.System.currentTimeMillis;
-import static java.lang.System.setProperty;
 import static org.testng.Assert.assertTrue;
 
 public class IndexPageContentTestSoftAssertions extends TestBase {

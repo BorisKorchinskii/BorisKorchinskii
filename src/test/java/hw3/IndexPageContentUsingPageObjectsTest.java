@@ -19,14 +19,14 @@ public class IndexPageContentUsingPageObjectsTest {
     private HomePage homePage;
 
     @BeforeClass
-    public void beforClass() {
+    public void beforeClass() {
         driver = new ChromeDriver();
         homePage = PageFactory.initElements(driver, HomePage.class);
 
     }
 
     @BeforeMethod
-    public void beforeClass() {
+    public void beforeMethod() {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     }
@@ -67,7 +67,7 @@ public class IndexPageContentUsingPageObjectsTest {
         homePage.checkMainHeaderHasText();
 
         //10 Assert that there is the iframe in the center of page
-        homePage.checkIframeIsVisible();
+        homePage.checkIfFrameIsVisible();
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
         homePage.checkEpamLogoIsVisible(driver);
@@ -76,10 +76,10 @@ public class IndexPageContentUsingPageObjectsTest {
         homePage.switchToOriginalWindow(driver);
 
         //13 Assert a text of the sub header
-        homePage.checkSubheaderTextt();
+        homePage.checkSubHeaderText();
 
         //14 Assert that JDI GITHUB is a link and has a proper URL
-        homePage.checkSubheaderHasLink();
+        homePage.checkSubHeaderHasLink();
 
         //15 Assert that there is Left Section
         homePage.checkIfLeftSectionVisible();

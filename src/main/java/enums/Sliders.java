@@ -1,17 +1,26 @@
 package enums;
 
+
 public enum Sliders {
 
-    ZERO("0", "0"),
-    THIRTY("0", "30"),
-    SEVENTY("0", "70"),
-    HUNDRED("0", "100");
+    ZERO(-380, 787),
+    THIRTY(110, 787),
+    SEVENTY(-114, 787),
+    HUNDRED(390, 787);
 
-    public String coordinates;
-    public String rangeValue;
+    public int xOffset;
+    public int yOffset;
 
-    Sliders(String coordinates, String rangeValue) {
-        this.rangeValue = rangeValue;
-        this.coordinates = coordinates;
+    Sliders(int xOffset, int yOffset) {
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
+    }
+
+    public int getxOffset() {
+        return xOffset;
+    }
+
+    public int getyOffset() {
+        return yOffset;
     }
 }

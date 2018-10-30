@@ -121,34 +121,29 @@ public class HomePageSelenide extends TestBaseForObjectTestHW4 {
 
     public void openDifferentElementsPageViaHeaderServiceMenu() {
         navBarElements.get(2).click();
-        serviceDropdownElements.get(6)
-                .shouldHave(text("DIFFERENT ELEMENTS")).click();
+        serviceDropdownElements.get(6).shouldHave(text("DIFFERENT ELEMENTS")).click();
     }
 
     public void selectDifferentElementsPageWaterWindCheckboxes(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
-            $$(differentElementsPageCheckboxes)
-                    .findBy(text(checkbox.checkboxesName)).click();
+            $$(differentElementsPageCheckboxes).findBy(text(checkbox.checkboxesName)).click();
         }
     }
 
     public void selectDifferentElementsSelenRadioButton(Radiobuttons... radiobuttons) {
         for (Radiobuttons radiobutton : radiobuttons) {
-            $$(differentElementsPageRadioButtons)
-                    .findBy(text(radiobutton.radiobuttonsType)).click();
+            $$(differentElementsPageRadioButtons).findBy(text(radiobutton.radiobuttonsType)).click();
         }
     }
 
     public void selectifferentElementsYellowFromDropdown(Dropdowns dropdowns) {
         differentElementsPageColorsDropdown.hover().click();
-        differentElementsPageColorsDropdownPositions
-                .find(text(dropdowns.dropdownsColor)).click();
+        differentElementsPageColorsDropdownPositions.find(text(dropdowns.dropdownsColor)).click();
     }
 
     public void unselectDifferentElementsPageWaterWindCheckboxes(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
-            $$(differentElementsPageCheckboxes)
-                    .findBy(text(checkbox.checkboxesName)).click();
+            $$(differentElementsPageCheckboxes).findBy(text(checkbox.checkboxesName)).click();
         }
     }
 

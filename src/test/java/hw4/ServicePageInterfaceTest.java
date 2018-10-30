@@ -31,42 +31,42 @@ public class ServicePageInterfaceTest extends ServicePageSelenide {
         servicePageInterface.checkServiceHeaderContainsOptions();
 
         //6 Click on Service subcategory in the left section and check that drop down contains options
-        servicePageInterface.checkServiceSubCatergoryLeftSectionContainsOptions();
+        servicePageInterface.checkServiceSubCategoryLeftSectionContainsOptions();
 
         //7 Open through the header menu Service -> Different Elements Page
-        servicePageInterface.openDifferentElementsPageViaHeaderServiceMenu();
+        servicePageInterface.openViaHeaderServiceMenu();
 
         //8 Check interface on Different elements page, it contains all needed elements
-        servicePageInterface.checkOnDifferentElementsPageNeededElementsVisible();
+        servicePageInterface.checkIfNeededElementsVisible();
 
         //9 Assert that there is Right Section
-        servicePageInterface.checkIfDifferentElementsPageRightSectionVisible();
+        servicePageInterface.checkIfRightSectionVisible();
 
         //10 Assert that there is Left Section
-        servicePageInterface.checkIfDifferentElementsPageLeftSectionVisible();
+        servicePageInterface.checkIfLeftSectionVisible();
 
         //11 Select checkboxes (Water, Wind)
-        servicePageInterface.selectDifferentElementsPageWaterWindCheckboxes(WATER, WIND);
+        servicePageInterface.selectWaterWindCheckboxes(WATER, WIND);
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
         servicePageInterface.checkIfDifferentElementsPageLogPannelContainsCheckboxStatusText(WATER, WIND);
 
         //13 Select radio (Selen)
-        servicePageInterface.selectDifferentElementsSelenRadioButton(SELEN);
+        servicePageInterface.selectSelenRadioButton(SELEN);
 
         //14 Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
-        servicePageInterface.checkIfDifferentElementsPageLogPannelContainsRadioButtonStatusText(SELEN);
+        servicePageInterface.checkIfLogPanelContainsRadioButtonStatusText(SELEN);
 
         //15 Select in dropdown (Yellow)
-        servicePageInterface.selectifferentElementsYellowFromDropdown(YELLOW);
+        servicePageInterface.selectYellowFromDropdown(YELLOW);
 
         //16 Assert that for dropdown there is a log row and value is corresponded to the selected value. 
-        servicePageInterface.checkIfDifferentElementsPageLogPannelContainsDropdownStatusText(YELLOW);
+        servicePageInterface.checkIfLogPanelContainsDropdownStatusText(YELLOW);
 
         //17 Unselect and assert checkboxes (Water, Wind)
-        servicePageInterface.unselectDifferentElementsPageWaterWindCheckboxes(WATER, WIND);
+        servicePageInterface.unselectWaterWindCheckboxes(WATER, WIND);
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        servicePageInterface.checkIfDifferentElementsPageLogPannelContainsUnselectedCheckboxStatusText(WATER, WIND);
+        servicePageInterface.checkIfPanelContainsUnselectedCheckboxStatusText(WATER, WIND);
     }
 }

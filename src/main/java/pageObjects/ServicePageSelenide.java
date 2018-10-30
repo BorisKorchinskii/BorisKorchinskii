@@ -119,36 +119,31 @@ public class ServicePageSelenide extends TestBaseForObjectTestHW4 {
         loggedinUserName.shouldHave(text(users.isDisplayed));
     }
 
-    public void openDifferentElementsPageViaHeaderServiceMenu() {
+    public void openViaHeaderServiceMenu() {
         navBarElements.get(2).click();
-        serviceDropdownElements.get(6)
-                .shouldHave(text("DIFFERENT ELEMENTS")).click();
+        serviceDropdownElements.get(6).shouldHave(text("DIFFERENT ELEMENTS")).click();
     }
 
-    public void selectDifferentElementsPageWaterWindCheckboxes(Checkboxes... checkboxes) {
+    public void selectWaterWindCheckboxes(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
-            $$(differentElementsPageCheckboxes)
-                    .findBy(text(checkbox.checkboxesName)).click();
+            $$(differentElementsPageCheckboxes).findBy(text(checkbox.checkboxesName)).click();
         }
     }
 
-    public void selectDifferentElementsSelenRadioButton(Radiobuttons... radiobuttons) {
+    public void selectSelenRadioButton(Radiobuttons... radiobuttons) {
         for (Radiobuttons radiobutton : radiobuttons) {
-            $$(differentElementsPageRadioButtons)
-                    .findBy(text(radiobutton.radiobuttonsType)).click();
+            $$(differentElementsPageRadioButtons).findBy(text(radiobutton.radiobuttonsType)).click();
         }
     }
 
-    public void selectifferentElementsYellowFromDropdown(Dropdowns dropdowns) {
+    public void selectYellowFromDropdown(Dropdowns dropdowns) {
         differentElementsPageColorsDropdown.hover().click();
-        differentElementsPageColorsDropdownPositions
-                .find(text(dropdowns.dropdownsColor)).click();
+        differentElementsPageColorsDropdownPositions.find(text(dropdowns.dropdownsColor)).click();
     }
 
-    public void unselectDifferentElementsPageWaterWindCheckboxes(Checkboxes... checkboxes) {
+    public void unselectWaterWindCheckboxes(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
-            $$(differentElementsPageCheckboxes)
-                    .findBy(text(checkbox.checkboxesName)).click();
+            $$(differentElementsPageCheckboxes).findBy(text(checkbox.checkboxesName)).click();
         }
     }
 
@@ -174,7 +169,7 @@ public class ServicePageSelenide extends TestBaseForObjectTestHW4 {
         serviceDropdownElements.get(7).shouldHave(text("PERFORMANCE"));
     }
 
-    public void checkServiceSubCatergoryLeftSectionContainsOptions() {
+    public void checkServiceSubCategoryLeftSectionContainsOptions() {
         serviceSubCategoryLeftElement.click();
         serviceSubCategoryLeftElements.shouldHaveSize(8);
         for (SelenideElement element : serviceSubCategoryLeftElements) {
@@ -190,59 +185,43 @@ public class ServicePageSelenide extends TestBaseForObjectTestHW4 {
         serviceSubCategoryLeftElements.get(7).shouldHave(text("Performance"));
     }
 
-    public void checkOnDifferentElementsPageNeededElementsVisible() {
-        $$(differentElementsPageCheckboxes)
-                .shouldHaveSize(4)
-                .shouldHave(texts("Water", "Earth", "Wind", "Fire"));
-        $$(differentElementsPageRadioButtons)
-                .shouldHaveSize(4)
-                .shouldHave(texts("Gold", "Silver", "Bronze", "Selen"));
+    public void checkIfNeededElementsVisible() {
+        $$(differentElementsPageCheckboxes).shouldHaveSize(4).shouldHave(texts("Water", "Earth", "Wind", "Fire"));
+        $$(differentElementsPageRadioButtons).shouldHaveSize(4).shouldHave(texts("Gold", "Silver", "Bronze", "Selen"));
         differentElementsPageUIButtons.shouldHaveSize(2);
-        differentElementsPageUIButtons.get(0)
-                .shouldHave(text("DEFAULT BUTTON"));
-        differentElementsPageUIButtons.get(1)
-                .shouldHave(value("BUTTON"));
+        differentElementsPageUIButtons.get(0).shouldHave(text("DEFAULT BUTTON"));
+        differentElementsPageUIButtons.get(1).shouldHave(value("BUTTON"));
     }
 
-    public void checkIfDifferentElementsPageRightSectionVisible() {
+    public void checkIfRightSectionVisible() {
         differentElementsPageRightSection.isDisplayed();
     }
 
-    public void checkIfDifferentElementsPageLeftSectionVisible() {
+    public void checkIfLeftSectionVisible() {
         differentElementsPageLeftSection.isDisplayed();
     }
 
     public void checkIfDifferentElementsPageLogPannelContainsCheckboxStatusText(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
-            if ($$(differentElementsPageCheckboxesStatus).get(checkbox.checkboxesPosition)
-                    .isSelected()) {
-                $(differentElementsPageLogsPanel)
-                        .shouldBe(visible)
-                        .shouldHave(text(checkbox.checkboxesName + ": condition changed to true"));
+            if ($$(differentElementsPageCheckboxesStatus).get(checkbox.checkboxesPosition).isSelected()) {
+                $(differentElementsPageLogsPanel).shouldBe(visible).shouldHave(text(checkbox.checkboxesName + ": condition changed to true"));
             }
         }
     }
 
-    public void checkIfDifferentElementsPageLogPannelContainsRadioButtonStatusText(Radiobuttons radiobuttons) {
-        $(differentElementsPageLogsPanel)
-                .shouldBe(visible)
-                .shouldHave(text("metal: value changed to " + radiobuttons.radiobuttonsType));
+    public void checkIfLogPanelContainsRadioButtonStatusText(Radiobuttons radiobuttons) {
+        $(differentElementsPageLogsPanel).shouldBe(visible).shouldHave(text("metal: value changed to " + radiobuttons.radiobuttonsType));
     }
 
 
-    public void checkIfDifferentElementsPageLogPannelContainsDropdownStatusText(Dropdowns dropdowns) {
-        $(differentElementsPageLogsPanel)
-                .shouldBe(visible)
-                .shouldHave(text("Colors: value changed to " + dropdowns.dropdownsColor));
+    public void checkIfLogPanelContainsDropdownStatusText(Dropdowns dropdowns) {
+        $(differentElementsPageLogsPanel).shouldBe(visible).shouldHave(text("Colors: value changed to " + dropdowns.dropdownsColor));
     }
 
-    public void checkIfDifferentElementsPageLogPannelContainsUnselectedCheckboxStatusText(Checkboxes... checkboxes) {
+    public void checkIfPanelContainsUnselectedCheckboxStatusText(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
-            if ($$(differentElementsPageCheckboxesStatus).get(checkbox.checkboxesPosition)
-                    .is(not(selected))) {
-                $(differentElementsPageLogsPanel)
-                        .shouldBe(visible)
-                        .shouldHave(text(checkbox.checkboxesName + ": condition changed to false"));
+            if ($$(differentElementsPageCheckboxesStatus).get(checkbox.checkboxesPosition).is(not(selected))) {
+                $(differentElementsPageLogsPanel).shouldBe(visible) .shouldHave(text(checkbox.checkboxesName + ": condition changed to false"));
             }
         }
     }

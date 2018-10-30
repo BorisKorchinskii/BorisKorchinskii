@@ -8,8 +8,6 @@ import org.testng.annotations.*;
 
 import java.util.List;
 
-import static java.lang.System.currentTimeMillis;
-import static java.lang.System.setProperty;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 

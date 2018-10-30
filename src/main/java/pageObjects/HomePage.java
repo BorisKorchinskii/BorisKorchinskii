@@ -121,8 +121,8 @@ public class HomePage {
     }
 
     public void checkMainHeaderHasText() {
-        String textOnMainTitleis = "EPAM FRAMEWORK WISHES…";
-        assertEquals(textOnMainTitle.getText(), textOnMainTitleis);
+        String textOnMainTitleIs = "EPAM FRAMEWORK WISHES…";
+        assertEquals(textOnMainTitle.getText(), textOnMainTitleIs);
         String mainTitleTextIs = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
                 "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, " +
                 "QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS " +
@@ -130,7 +130,7 @@ public class HomePage {
         assertEquals(titleContainingText.getText(), mainTitleTextIs);
     }
 
-    public void checkIframeIsVisible() {
+    public void checkIfFrameIsVisible() {
         assertTrue(iFrame.isDisplayed());
     }
 
@@ -139,12 +139,12 @@ public class HomePage {
         assertTrue(epamLogoIniFrame.isDisplayed());
     }
 
-    public void checkSubheaderTextt() {
+    public void checkSubHeaderText() {
         assertTrue(jdiSubheader.isDisplayed());
         assertEquals(jdiSubheader.getText(), "JDI GITHUB");
     }
 
-    public void checkSubheaderHasLink() {
+    public void checkSubHeaderHasLink() {
         assertEquals(jdiSubheader.getAttribute("href"), "https://github.com/epam/JDI");
     }
 

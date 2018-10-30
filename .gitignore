@@ -2,4 +2,4 @@
 /BorisKorchinskii.iml
 /.idea/
 /target/**
-/build/reports/tests/
+/build/reports/*

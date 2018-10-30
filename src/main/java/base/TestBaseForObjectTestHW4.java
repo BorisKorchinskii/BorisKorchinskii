@@ -12,11 +12,9 @@ import static java.lang.System.currentTimeMillis;
 
 public class TestBaseForObjectTestHW4 {
 
-    //protected HomePageSelenide homePage;
     protected ServicePageSelenide servicePageInterface;
     protected DataPageSelenide  dataPageSelenide;
     private long time;
-
 
     @BeforeSuite
     public void beforeSuite() {
