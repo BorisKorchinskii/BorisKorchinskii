@@ -2,18 +2,12 @@ package base;
 
 import com.codeborne.selenide.Configuration;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
-import pageObjects.DataPageSelenide;
-import pageObjects.ServicePageSelenide;
 
-import static com.codeborne.selenide.Selenide.page;
 import static java.lang.System.currentTimeMillis;
 
 public class TestBaseForObjectTestHW4 {
 
-    protected ServicePageSelenide servicePageInterface;
-    protected DataPageSelenide  dataPageSelenide;
     private long time;
 
     @BeforeSuite
@@ -21,15 +15,7 @@ public class TestBaseForObjectTestHW4 {
         Configuration.browser = "chrome";
         Configuration.startMaximized = true;
         Configuration.pageLoadStrategy = "normal";
-
         time = currentTimeMillis();
-    }
-
-    @BeforeClass
-    public void beforeMethod() {
-        //homePage = page(HomePageSelenide.class);
-        servicePageInterface = page(ServicePageSelenide.class);
-        dataPageSelenide = page(DataPageSelenide.class);
     }
 
     @AfterSuite
