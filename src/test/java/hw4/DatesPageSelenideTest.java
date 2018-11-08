@@ -11,7 +11,7 @@ import static enums.Users.PITER_CHAILOVSKII;
 
 public class DatesPageSelenideTest extends TestBaseForObjectTestHW4 {
 
-    private DatesPageSelenide  datesPageSelenide;
+    private DatesPageSelenide datesPageSelenide;
     private HomePageSelenide homePageSelenide;
 
     @BeforeClass
@@ -42,24 +42,24 @@ public class DatesPageSelenideTest extends TestBaseForObjectTestHW4 {
         datesPageSelenide.setSlidersPositions(0, 100);
 
         //7 Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        datesPageSelenide.checkIfHandlesSet0to100();
+       datesPageSelenide.checkIfHandlesSetTo(0, 100);
 
         //8 Using drag-and-drop set Range sliders. left sliders - the most left position, right slider - the most left position.
         datesPageSelenide.setSlidersPositions(0, 0);
 
         //9 Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        datesPageSelenide.checkIfHandlesSet0to0();
+        datesPageSelenide.checkIfHandlesSetTo(0, 0);
 
         //10 Using drag-and-drop set Range sliders. left sliders - the most right position, right slider - the most right position.
         datesPageSelenide.setSlidersPositions(100, 100);
 
         //11 Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        datesPageSelenide.checkIfHandlesSet100to100();
+        datesPageSelenide.checkIfHandlesSetTo(100, 100);
 
         //12 Using drag-and-drop set Range sliders. (From = 30, To = 70)
         datesPageSelenide.setSlidersPositions(30, 70);
 
         //13 Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        datesPageSelenide.checkIfHandlesSet30to70();
+        datesPageSelenide.checkIfHandlesSetTo(30, 70);
     }
 }

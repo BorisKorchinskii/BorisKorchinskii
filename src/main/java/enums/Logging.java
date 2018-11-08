@@ -2,52 +2,38 @@ package enums;
 
 public enum Logging {
 
-    FROM {
+    R2FROM {
         @Override
         public String toString() {
             return "Range 2(From):";
         }
     },
 
-    TO {
+    R2TO {
         @Override
         public String toString() {
             return "Range 2(To):";
         }
     },
 
-    ZERO {
+    FROM {
         @Override
         public String toString() {
-            return "0 link clicked";
+            return "(From):";
         }
     },
 
-    HUNDRED {
+    TO {
         @Override
         public String toString() {
-            return "100 link clicked";
+            return "(To):";
         }
     },
 
-    THIRTY {
+    CLICKED {
         @Override
         public String toString() {
-            return "30 link clicked";
-        }
-    },
-
-    SEVENTY {
-        @Override
-        public String toString() {
-            return "70 link clicked";
-        }
-    },
-
-    COND_CHANGED_TO {
-        @Override
-        public String toString() {
-            return ": condition changed to ";
+            return " link clicked";
         }
     },
 
@@ -55,20 +41,6 @@ public enum Logging {
         @Override
         public String toString() {
             return ": value changed to ";
-        }
-    },
-
-    TRUE {
-        @Override
-        public String toString() {
-            return "true";
-        }
-    },
-
-    FALSE {
-        @Override
-        public String toString() {
-            return "false";
         }
     },
 

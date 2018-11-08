@@ -61,7 +61,7 @@ public class DifferentElementsPageTest extends TestBaseForObjectTestHW4 {
         differentElementsPageSelenide.selectWaterWindCheckboxes(WATER, WIND);
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentElementsPageSelenide.checkIfDifferentElementsPageLogPannelContainsCheckboxStatusText(WATER, WIND);
+        differentElementsPageSelenide.checkIfLogPanelContainsCheckboxStatus(WATER, WIND);
 
         //13 Select radio (Selen)
         differentElementsPageSelenide.selectSelenRadioButton(SELEN);
@@ -79,6 +79,6 @@ public class DifferentElementsPageTest extends TestBaseForObjectTestHW4 {
         differentElementsPageSelenide.unselectWaterWindCheckboxes(WATER, WIND);
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentElementsPageSelenide.checkIfPanelContainsUnselectedCheckboxStatusText(WATER, WIND);
+        differentElementsPageSelenide.checkIfLogPanelContainsCheckboxStatus(WATER, WIND);
     }
 }

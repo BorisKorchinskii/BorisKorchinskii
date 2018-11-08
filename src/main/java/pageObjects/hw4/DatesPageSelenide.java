@@ -2,14 +2,11 @@ package pageObjects.hw4;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import enums.Logging;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.actions;
-import static enums.Logging.FROM;
-import static enums.Logging.TO;
+import static enums.Logging.*;
 
 public class DatesPageSelenide {
 
@@ -43,24 +40,9 @@ public class DatesPageSelenide {
 
     //=============================== Elements checkers ==========================================
 
-    public void checkIfHandlesSet0to100() {
-        $$(differentElementsPageLogsPanel).get(1).shouldHave(text(FROM + String.valueOf(Logging.ZERO)));
-        $$(differentElementsPageLogsPanel).get(0).shouldHave(text(TO + String.valueOf(Logging.HUNDRED)));
-    }
-
-    public void checkIfHandlesSet0to0() {
-        $$(differentElementsPageLogsPanel).get(1).shouldHave(text(FROM + String.valueOf(Logging.ZERO)));
-        $$(differentElementsPageLogsPanel).get(0).shouldHave(text(TO + String.valueOf(Logging.ZERO)));
-    }
-
-    public void checkIfHandlesSet100to100() {
-        $$(differentElementsPageLogsPanel).get(1).shouldHave(text(TO + String.valueOf(Logging.HUNDRED)));
-        $$(differentElementsPageLogsPanel).get(0).shouldHave(text(TO + String.valueOf(Logging.HUNDRED)));
-    }
-
-    public void checkIfHandlesSet30to70() {
-        $$(differentElementsPageLogsPanel).get(1).shouldHave(text(FROM + String.valueOf(Logging.THIRTY)));
-        $$(differentElementsPageLogsPanel).get(0).shouldHave(text(TO + String.valueOf(Logging.SEVENTY)));
+    public void checkIfHandlesSetTo(int from, int to) {
+        differentElementsPageLogsPanel.findBy(text(FROM + (String.valueOf(from)))).shouldHave(text(R2FROM + String.valueOf(from) + CLICKED));
+        differentElementsPageLogsPanel.findBy(text(TO + (String.valueOf(to)))).shouldHave(text(R2TO + String.valueOf(to) + CLICKED));
     }
 }
 

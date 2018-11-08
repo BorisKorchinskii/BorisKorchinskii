@@ -16,6 +16,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import static enums.Checkboxes.*;
 import static enums.Logging.*;
 import static enums.Radiobuttons.*;
+import static org.testng.Assert.assertTrue;
 
 public class DifferentElementsPageSelenide {
 
@@ -42,6 +43,10 @@ public class DifferentElementsPageSelenide {
 
     @FindBy(css = "[class = 'panel-body-list logs']")
     private SelenideElement differentElementsPageLogsPanel;
+
+    @FindBy(css = "[class = '.logs']")
+    private ElementsCollection differentElementsPageLogsPanelLogs;
+
 
     @FindBy(css = "[class='label-checkbox'] > input")
     private List<SelenideElement> differentElementsPageCheckboxesStatus;
@@ -71,6 +76,15 @@ public class DifferentElementsPageSelenide {
         }
     }
 
+    private boolean logContainsCheckbox(Checkboxes checkbox, SelenideElement element) {
+        for (SelenideElement selenideElement : differentElementsPageLogsPanelLogs) {
+            if (selenideElement.has(matchText(".*" + checkbox.checkboxesName + ".*" + element.isSelected()))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //=============================== Elements checkers ==========================================
 
     public void checkIfNeededElementsVisible() {
@@ -89,10 +103,19 @@ public class DifferentElementsPageSelenide {
         $(differentElementsPageLeftSection).isDisplayed();
     }
 
-    public void checkIfDifferentElementsPageLogPannelContainsCheckboxStatusText(Checkboxes... checkboxes) {
-        for (Checkboxes checkbox : checkboxes) {
-            if ($$(differentElementsPageCheckboxesStatus).get(checkbox.checkboxesPosition).isSelected()) {
-                $(differentElementsPageLogsPanel).shouldBe(visible).shouldHave(text(checkbox.checkboxesName + COND_CHANGED_TO + TRUE));
+
+    public void checkIfLogPanelContainsCheckboxStatus(Checkboxes... checkboxes) {
+
+        for (Checkboxes element : checkboxes) {
+            checkLogForCheckbox(element);
+        }
+    }
+
+    private void checkLogForCheckbox(Checkboxes checkbox) {
+
+        for (SelenideElement element : differentElementsPageCheckboxes) {
+            if (element.parent().getText().equals(checkbox.checkboxesName)) {
+                assertTrue(logContainsCheckbox(checkbox, element));
             }
         }
     }
@@ -103,14 +126,6 @@ public class DifferentElementsPageSelenide {
 
     public void checkIfLogPanelContainsDropdownStatusText(Dropdowns dropdowns) {
         $(differentElementsPageLogsPanel).shouldBe(visible).shouldHave(text(String.valueOf(COLORS) + VALUE_CHANGED_TO + dropdowns.dropdownsColor));
-    }
-
-    public void checkIfPanelContainsUnselectedCheckboxStatusText(Checkboxes... checkboxes) {
-        for (Checkboxes checkbox : checkboxes) {
-            if ($$(differentElementsPageCheckboxesStatus).get(checkbox.checkboxesPosition).is(not(selected))) {
-                $(differentElementsPageLogsPanel).shouldBe(visible).shouldHave(text(checkbox.checkboxesName + COND_CHANGED_TO + FALSE));
-            }
-        }
     }
 }
 
