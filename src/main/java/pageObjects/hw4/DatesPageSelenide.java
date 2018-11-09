@@ -13,28 +13,34 @@ public class DatesPageSelenide {
     @FindBy(css = "[class = 'panel-body-list logs'] li")
     private ElementsCollection differentElementsPageLogsPanel;
 
-    @FindBy(css = ".ui-slider-handle")
-    private ElementsCollection sliderHandle;
-
     @FindBy(css = ".ui-slider")
     private SelenideElement slider;
 
+    @FindBy(xpath = "//div[@class='ui-slider-range ui-widget-header ui-corner-all']/preceding-sibling::a")
+    private SelenideElement leftSideRange;
+
+    @FindBy(css = "div[class*='ui-slider-range'] + a")
+    private SelenideElement rightSideRange;
+
     //=============================== Actions methods ========================================
 
-    public void setSlidersPositions(int from, int to) {
-        double sliderWidth = slider.getSize().getWidth();
-        double sliderHandleWidth = sliderHandle.get(0).getSize().getWidth();
-        double xCoord = slider.getLocation().getX();
-        double fromX = sliderHandle.get(0).getLocation().getX() + sliderHandleWidth / 2;
-        double toX = sliderHandle.get(1).getLocation().getX() + sliderHandleWidth / 2;
-        double newPositionFroX = xCoord - fromX + from * sliderWidth / 100;
-        double newPositionToX = xCoord - toX + to * sliderWidth / 100;
-        if (newPositionToX <= fromX) {
-            actions().moveToElement(slider).dragAndDropBy(sliderHandle.get(0), (int) Math.ceil(newPositionFroX), 0)
-                    .dragAndDropBy(sliderHandle.get(1), (int) Math.ceil(newPositionToX), 0).perform();
+    private double getStep() {
+        return (double) slider.getSize().getWidth() / 100;
+    }
+
+    private void moveHandle(SelenideElement slider, double position) {
+        double currentHandlePosition = Double.parseDouble(slider.text());
+        double handleOffset = (position - currentHandlePosition > 0) ? (position - currentHandlePosition) * getStep() : (position - currentHandlePosition - 1) * getStep();
+        actions().dragAndDropBy(slider.toWebElement(), (int) handleOffset, 0).build().perform();
+    }
+
+    public void setSlidersPositions(double leftHandle, double rightHandle) {
+        if (leftSideRange.getLocation().x == rightSideRange.getLocation().x && rightSideRange.getLocation().x == 1156) {
+            moveHandle(leftSideRange, leftHandle);
+            moveHandle(rightSideRange, rightHandle);
         } else {
-            actions().moveToElement(slider).dragAndDropBy(sliderHandle.get(1), (int) Math.ceil(newPositionToX), 0)
-                    .dragAndDropBy(sliderHandle.get(0), (int) Math.ceil(newPositionFroX), 0).perform();
+            moveHandle(rightSideRange, rightHandle);
+            moveHandle(leftSideRange, leftHandle);
         }
     }
 

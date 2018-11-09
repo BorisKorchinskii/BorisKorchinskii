@@ -47,10 +47,6 @@ public class DifferentElementsPageSelenide {
     @FindBy(css = "[class = '.logs']")
     private ElementsCollection differentElementsPageLogsPanelLogs;
 
-
-    @FindBy(css = "[class='label-checkbox'] > input")
-    private List<SelenideElement> differentElementsPageCheckboxesStatus;
-
     //=============================== Actions methods ========================================
 
     public void selectWaterWindCheckboxes(Checkboxes... checkboxes) {
