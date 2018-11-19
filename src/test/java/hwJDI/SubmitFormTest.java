@@ -22,13 +22,16 @@ public class SubmitFormTest extends SubmitFormBase {
         //1. Login on JDI site as User
         homePage.open();
         homePage.checkOpened();
+        // TODO This methodS should be parametrised.
         login();
         checkUserIsLogged();
+        // !TODO
 
         //2. Open Metals & Colors page by Header menu
         openMetalsAndColorsFromHeader(METALS_AND_COLORS_PAGE);
 
         //3. Fill & submit form Metals & Colors
+        // TODO Can you fill this form by oldTestData ?
         metalsAndColors.form.submit(newTestData);
 
         //4.Check if Result sections should contains data
