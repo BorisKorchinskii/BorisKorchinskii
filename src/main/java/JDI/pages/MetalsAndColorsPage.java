@@ -8,7 +8,6 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JPage;
 
 @JPage(url = "/metals-colors.html", title = "Metal and Colors")
 public class MetalsAndColorsPage extends WebPage {
-
     public MetalsAndColorsForm form;
     public ResultSetion results;
 }
