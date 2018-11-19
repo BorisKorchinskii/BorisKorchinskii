@@ -1,7 +1,7 @@
 package JDI.sections;
 
 
-import JDI.entities.TestData;
+import JDI.entities.MetalsAndColorsFormData;
 import com.epam.jdi.uitests.web.selenium.elements.composite.Section;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +20,7 @@ public class ResultSetion extends Section {
     @FindBy(css = ".results li")
     private List<WebElement> res;
 
-    public void check(TestData data) {
+    public void check(MetalsAndColorsFormData data) {
 
         String dataElements = Arrays.toString(data.elements);
         dataElements = dataElements.substring(1, dataElements.length() - 1);

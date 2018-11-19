@@ -1,10 +1,6 @@
 package JDI.enums;
 
-import com.epam.commons.DataClass;
-
-public class User extends DataClass {
-
-    public static User PITER_CHAILOVSKII = new User("epam", "1234", "PITER CHAILOVSKII");
+public class User {
 
     public String login;
     public String password;
@@ -15,6 +11,8 @@ public class User extends DataClass {
         this.password = password;
         this.isDisplayed = isDisplayed;
     }
+
+    public static User PITER_CHAILOVSKII = new User("epam", "1234", "PITER CHAILOVSKII");
 
     public String getLogin() {
         return login;

@@ -2,12 +2,13 @@ package hwJDI;
 
 import JDI.base.SubmitFormBase;
 import JDI.dataProviders.FormDataProvider;
-import JDI.entities.TestData;
+import JDI.entities.MetalsAndColorsFormData;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import static JDI.JDIExampleSite.*;
 import static JDI.enums.Pages.METALS_AND_COLORS_PAGE;
+import static JDI.enums.User.PITER_CHAILOVSKII;
 
 public class SubmitFormTest extends SubmitFormBase {
 
@@ -17,13 +18,13 @@ public class SubmitFormTest extends SubmitFormBase {
     }
 
     @Test(dataProvider = "simpleDataProvider", dataProviderClass = FormDataProvider.class)
-    public void submitFormTest(TestData newTestData) {
+    public void submitFormTest(MetalsAndColorsFormData newTestData) {
 
         //1. Login on JDI site as User
         homePage.open();
         homePage.checkOpened();
-        login();
-        checkUserIsLogged();
+        login(PITER_CHAILOVSKII);
+        checkUserIsLogged(PITER_CHAILOVSKII);
 
         //2. Open Metals & Colors page by Header menu
         openMetalsAndColorsFromHeader(METALS_AND_COLORS_PAGE);

@@ -1,7 +1,7 @@
 package JDI.dataProviders;
 
 import JDI.base.SubmitFormBase;
-import JDI.entities.TestData;
+import JDI.entities.MetalsAndColorsFormData;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -21,9 +21,9 @@ public class FormDataProvider extends SubmitFormBase {
         Gson gson = new Gson();
         JsonObject jsonData = new JsonParser().parse(new FileReader(jsonDataSetPath)).getAsJsonObject();
 
-        Type type = new TypeToken<Map<String, TestData>>() {
+        Type type = new TypeToken<Map<String, MetalsAndColorsFormData>>() {
         }.getType();
-        Map<String, TestData> dataSet = gson.fromJson(jsonData, type);
+        Map<String, MetalsAndColorsFormData> dataSet = gson.fromJson(jsonData, type);
 
         Object[][] dataObjects = new Object[dataSet.size()][1];
         int index = 0;

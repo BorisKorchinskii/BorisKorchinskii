@@ -1,6 +1,6 @@
 package JDI.forms;
 
-import JDI.entities.TestData;
+import JDI.entities.MetalsAndColorsFormData;
 import JDI.enums.ColorsDropdown;
 import JDI.enums.MetalsDropdowns;
 import JDI.enums.NatureElements;
@@ -13,7 +13,7 @@ import com.epam.jdi.uitests.web.selenium.elements.composite.Form;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
 import org.openqa.selenium.support.FindBy;
 
-public class MetalsAndColorsForm extends Form<TestData> {
+public class MetalsAndColorsForm extends Form<MetalsAndColorsFormData> {
 
     public Summary summary;
 
@@ -48,7 +48,7 @@ public class MetalsAndColorsForm extends Form<TestData> {
     //================================ Actions methods ===================================
 
     @Override
-    public void submit(TestData data) {
+    public void submit(MetalsAndColorsFormData data) {
         selectSummary(data.summary);
         selectElements(data.elements);
         this.color.select(data.color);
