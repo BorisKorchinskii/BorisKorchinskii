@@ -126,6 +126,7 @@
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                 </configuration>
+
                 <dependencies>
                     <dependency>
                         <groupId>org.aspectj</groupId>
@@ -133,6 +134,7 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
+
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -143,7 +145,13 @@
                 </configuration>
             </plugin>
         </plugins>
-            </build>
+        <resources>
+            <resource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 
     <reporting>
         <excludeDefaults>true</excludeDefaults>
