@@ -15,6 +15,7 @@ import static com.codeborne.selenide.Selenide.page;
 import static enums.Checkboxes.WATER;
 import static enums.Checkboxes.WIND;
 import static enums.Dropdowns.YELLOW;
+import static enums.Radiobuttons.BRONZE;
 import static enums.Radiobuttons.SELEN;
 import static enums.Users.PITER_CHAILOVSKII;
 
@@ -32,7 +33,7 @@ public class DifferentElementsPageTestFails extends SelenideTestBase {
         homePageSelenide = page(HomePageSelenide.class);
     }
 
-    @Issue("Setting to (WIND, WATER) at step 18 cause a bug")
+    @Issue("Setting radiobutton to (BRONZE) at step 13 cause a bug")
     @Test
     public void checkDifferentElementsPageInterface() {
 
@@ -73,7 +74,7 @@ public class DifferentElementsPageTestFails extends SelenideTestBase {
         differentElementsPageSelenide.checkIfLogPanelContainsCheckboxStatus(WATER, WIND);
 
         //13 Select radio (Selen)
-        differentElementsPageSelenide.selectSelenRadioButton(SELEN);
+        differentElementsPageSelenide.selectSelenRadioButton(BRONZE);
 
         //14 Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
         differentElementsPageSelenide.checkIfLogPanelContainsRadioButtonStatusText(SELEN);
@@ -88,6 +89,6 @@ public class DifferentElementsPageTestFails extends SelenideTestBase {
         differentElementsPageSelenide.unselectWaterWindCheckboxes(WATER, WIND);
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentElementsPageSelenide.checkIfLogPanelContainsCheckboxStatus(WIND, WATER);
+        differentElementsPageSelenide.checkIfLogPanelContainsCheckboxStatus(WATER, WIND);
     }
 }

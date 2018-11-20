@@ -22,44 +22,44 @@ public class HomePageSelenide {
 
     //=============================== Actions methods ========================================
 
-    @Step("Open JDI test page")
+    @Step
     public void navigateToPage() {
         Selenide.open(INDEX_PAGE.navigateTo);
     }
 
-    @Step("Assert Browser title  is visible")
+    @Step
     public void checkIfTitleIsVisible() {
         assertEquals(getWebDriver().getTitle(), "Home Page");
     }
 
-    @Step("Perform login")
+    @Step
     public void login() {
         header.login();
     }
 
-    @Step ("Click on the \"Service\" subcategory in the header")
+    @Step
     public void openDatesViaHeaderServiceMenu() {
         header.openDatesViaHeaderServiceMenu();
     }
 
-    @Step ("Click on the \"Elements\" subcategory in the header")
+    @Step
     public void openElementsViaHeaderServiceMenu() {
         header.openElementsViaHeaderServiceMenu();
     }
 
     //=============================== Elements Checks ========================================
 
-    @Step("Check if user is logged")
+    @Step
     public void userIsLogged(Users users) {
         header.userIsLogged(Users.PITER_CHAILOVSKII);
     }
 
-    @Step("Check if header \"Service\" drop down contains correct options")
+    @Step
     public void checkServiceHeaderContainsOptions() {
         header.checkServiceHeaderContainsOptions();
     }
 
-    @Step("Check if left panel \"Service\" drop down contains correct options")
+    @Step
     public void checkServiceSubCategoryLeftSectionContainsOptions() {
         leftSection.checkServiceSubCategoryLeftSectionContainsOptions();
     }

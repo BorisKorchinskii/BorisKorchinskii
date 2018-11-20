@@ -37,7 +37,7 @@ public class DatesPageSelenide {
         actions().dragAndDropBy(slider.toWebElement(), (int) handleOffset, 0).build().perform();
     }
 
-    @Step ("Set sliders")
+    @Step
     public void setSlidersPositions(double leftHandle, double rightHandle) {
         if (leftSideRange.getLocation().x == rightSideRange.getLocation().x && rightSideRange.getLocation().x == 1156) {
             moveHandle(leftSideRange, leftHandle);
@@ -50,7 +50,7 @@ public class DatesPageSelenide {
 
     //=============================== Elements checkers ==========================================
 
-    @Step("Check if sliders set correctly")
+    @Step
     public void checkIfHandlesSetTo(int from, int to) {
         differentElementsPageLogsPanel.findBy(text(FROM + (String.valueOf(from)))).shouldHave(text(R2FROM + String.valueOf(from) + CLICKED));
         differentElementsPageLogsPanel.findBy(text(TO + (String.valueOf(to)))).shouldHave(text(R2TO + String.valueOf(to) + CLICKED));

@@ -50,27 +50,27 @@ public class DifferentElementsPageSelenide {
 
     //=============================== Actions methods ========================================
 
-    @Step("Select WATER/WIND checkboxes")
+    @Step
     public void selectWaterWindCheckboxes(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
             $$(differentElementsPageCheckboxes).findBy(text(checkbox.checkboxesName)).click();
         }
     }
 
-    @Step("Set radiobuttons")
+    @Step
     public void selectSelenRadioButton(Radiobuttons... radiobuttons) {
         for (Radiobuttons radiobutton : radiobuttons) {
             $$(differentElementsPageRadioButtons).findBy(text(radiobutton.radiobuttonsType)).click();
         }
     }
 
-    @Step("Select YELLOW from dropdown")
+    @Step
     public void selectYellowFromDropdown(Dropdowns dropdowns) {
         $(differentElementsPageColorsDropdown).hover().click();
         $$(differentElementsPageColorsDropdownPositions).find(text(dropdowns.dropdownsColor)).click();
     }
 
-    @Step("Unselect WATER/WIND checkboxes")
+    @Step
     public void unselectWaterWindCheckboxes(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
             $$(differentElementsPageCheckboxes).findBy(text(checkbox.checkboxesName)).click();
@@ -88,7 +88,7 @@ public class DifferentElementsPageSelenide {
 
     //=============================== Elements checkers ==========================================
 
-    @Step("Check interface on the Different elements page, contains all needed elements")
+    @Step
     public void checkIfNeededElementsVisible() {
         $$(differentElementsPageCheckboxes).shouldHaveSize(4).shouldHave(texts(String.valueOf(WATER), String.valueOf(EARTH), String.valueOf(WIND), String.valueOf(FIRE)));
         $$(differentElementsPageRadioButtons).shouldHaveSize(4).shouldHave(texts(String.valueOf(GOLD), String.valueOf(SILVER), String.valueOf(BRONZE), String.valueOf(SELEN)));
@@ -97,17 +97,17 @@ public class DifferentElementsPageSelenide {
         $$(differentElementsPageUIButtons).get(1).shouldHave(value("BUTTON"));
     }
 
-    @Step("Check if the Right Section is visible")
+    @Step
     public void checkIfRightSectionVisible() {
         $(differentElementsPageRightSection).isDisplayed();
     }
 
-    @Step("Check if the Left Section is visible")
+    @Step
     public void checkIfLeftSectionVisible() {
         $(differentElementsPageLeftSection).isDisplayed();
     }
 
-    @Step("Assert logging of checkboxes is correct")
+    @Step
     public void checkIfLogPanelContainsCheckboxStatus(Checkboxes... checkboxes) {
 
         for (Checkboxes element : checkboxes) {
@@ -124,12 +124,12 @@ public class DifferentElementsPageSelenide {
         }
     }
 
-    @Step("Assert logging of radiobuttons is correct")
+    @Step
     public void checkIfLogPanelContainsRadioButtonStatusText(Radiobuttons radiobuttons) {
         $(differentElementsPageLogsPanel).shouldBe(visible).shouldHave(text(String.valueOf(METAL) + VALUE_CHANGED_TO + radiobuttons.radiobuttonsType));
     }
 
-    @Step("Assert logging of drop down is correct")
+    @Step
     public void checkIfLogPanelContainsDropdownStatusText(Dropdowns dropdowns) {
         $(differentElementsPageLogsPanel).shouldBe(visible).shouldHave(text(String.valueOf(COLORS) + VALUE_CHANGED_TO + dropdowns.dropdownsColor));
     }
