@@ -20,7 +20,6 @@ public class LeftSection {
 
     //=============================== Checks ========================================
 
-    @Step
     public void checkServiceSubCategoryLeftSectionContainsOptions() {
         serviceSubCategoryLeftElement.click();
         serviceSubCategoryLeftElements.shouldHaveSize(8);

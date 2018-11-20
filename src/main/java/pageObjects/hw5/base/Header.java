@@ -38,7 +38,7 @@ public class Header {
 
     //=============================== Actions methods ========================================
 
-    @Step
+
     public void login() {
         loginProfileButton.click();
         loginField.sendKeys(PITER_CHAILOVSKII.login);
@@ -46,13 +46,13 @@ public class Header {
         enterButton.click();
     }
 
-    @Step
+
     public void openDatesViaHeaderServiceMenu() {
         navBarElements.get(2).click();
         serviceDropdownElements.get(1).shouldHave(text("DATES")).click();
     }
 
-    @Step
+
     public void openElementsViaHeaderServiceMenu() {
         navBarElements.get(2).click();
         serviceDropdownElements.get(6).shouldHave(text("DIFFERENT ELEMENTS")).click();
@@ -60,12 +60,11 @@ public class Header {
 
     //=============================== Checks ========================================
 
-    @Step
+
     public void userIsLogged(Users users) {
         loggedinUserName.shouldHave(text(users.isDisplayed));
     }
 
-    @Step
     public void checkServiceHeaderContainsOptions() {
         navBarElements.get(2).click();
         serviceDropdownElements.shouldHaveSize(8);
