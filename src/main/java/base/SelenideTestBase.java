@@ -8,6 +8,6 @@ public class SelenideTestBase {
     @BeforeSuite
     public void beforeSuite(){
         Configuration.browser = "chrome";
-        Configuration.pageLoadStrategy = "normal";
+        Configuration.startMaximized = true;
     }
 }
