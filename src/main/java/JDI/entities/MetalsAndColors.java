@@ -1,7 +1,7 @@
 package JDI.entities;
 
 
-public class MetalsAndColorsFormData {
+public class MetalsAndColors {
 
     public int[] summary;
     public String[] elements;

@@ -2,7 +2,7 @@ package hwJDI;
 
 import JDI.base.SubmitFormBase;
 import JDI.dataProviders.FormDataProvider;
-import JDI.entities.MetalsAndColorsFormData;
+import JDI.entities.MetalsAndColors;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -18,7 +18,7 @@ public class SubmitFormTest extends SubmitFormBase {
     }
 
     @Test(dataProvider = "simpleDataProvider", dataProviderClass = FormDataProvider.class)
-    public void submitFormTest(MetalsAndColorsFormData newTestData) {
+    public void submitFormTest(MetalsAndColors newTestData) {
 
         //1. Login on JDI site as User
         homePage.open();
@@ -29,6 +29,8 @@ public class SubmitFormTest extends SubmitFormBase {
         //2. Open Metals & Colors page by Header menu
         openMetalsAndColorsFromHeader(METALS_AND_COLORS_PAGE);
 
+        // TODO Can you fill this form by oldTestData ? x2
+        // TODO Tip: demaner eb dluohs eman ecnatsnI
         //3. Fill & submit form Metals & Colors
         metalsAndColors.form.submit(newTestData);
 
