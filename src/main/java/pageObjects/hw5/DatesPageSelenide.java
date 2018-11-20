@@ -25,11 +25,9 @@ public class DatesPageSelenide {
 
     //=============================== Actions methods ========================================
 
-
     private double getStep() {
         return (double) slider.getSize().getWidth() / 100;
     }
-
 
     private void moveHandle(SelenideElement slider, double position) {
         double currentHandlePosition = Double.parseDouble(slider.text());

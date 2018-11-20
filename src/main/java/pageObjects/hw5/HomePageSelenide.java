@@ -42,7 +42,7 @@ public class HomePageSelenide {
         header.openDatesViaHeaderServiceMenu();
     }
 
-
+    @Step
     public void openElementsViaHeaderServiceMenu() {
         header.openElementsViaHeaderServiceMenu();
     }
@@ -54,12 +54,12 @@ public class HomePageSelenide {
         header.userIsLogged(Users.PITER_CHAILOVSKII);
     }
 
-
+    @Step
     public void checkServiceHeaderContainsOptions() {
         header.checkServiceHeaderContainsOptions();
     }
 
-
+    @Step
     public void checkServiceSubCategoryLeftSectionContainsOptions() {
         leftSection.checkServiceSubCategoryLeftSectionContainsOptions();
     }
