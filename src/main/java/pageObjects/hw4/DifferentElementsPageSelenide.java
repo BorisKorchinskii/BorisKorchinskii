@@ -20,11 +20,11 @@ import static org.testng.Assert.assertTrue;
 
 public class DifferentElementsPageSelenide {
 
-    @FindBy(css = "[class = 'label-checkbox']")
-    private List<SelenideElement> differentElementsPageCheckboxes;
+    @FindBy(css = "[class='label-checkbox']")
+    private ElementsCollection differentElementsPageCheckboxes;
 
-    @FindBy(css = "[class = 'label-radio']")
-    private List<SelenideElement> differentElementsPageRadioButtons;
+    @FindBy(css = "[class='label-radio']")
+    private ElementsCollection differentElementsPageRadioButtons;
 
     @FindBy(css = "[class = 'colors']")
     private SelenideElement differentElementsPageColorsDropdown;
@@ -51,24 +51,24 @@ public class DifferentElementsPageSelenide {
 
     public void selectWaterWindCheckboxes(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
-            $$(differentElementsPageCheckboxes).findBy(text(checkbox.checkboxesName)).click();
+            differentElementsPageCheckboxes.findBy(text(checkbox.checkboxesName)).click();
         }
     }
 
     public void selectSelenRadioButton(Radiobuttons... radiobuttons) {
         for (Radiobuttons radiobutton : radiobuttons) {
-            $$(differentElementsPageRadioButtons).findBy(text(radiobutton.radiobuttonsType)).click();
+            differentElementsPageRadioButtons.findBy(text(radiobutton.radiobuttonsType)).click();
         }
     }
 
     public void selectYellowFromDropdown(Dropdowns dropdowns) {
-        $(differentElementsPageColorsDropdown).hover().click();
-        $$(differentElementsPageColorsDropdownPositions).find(text(dropdowns.dropdownsColor)).click();
+        differentElementsPageColorsDropdown.hover().click();
+        differentElementsPageColorsDropdownPositions.find(text(dropdowns.dropdownsColor)).click();
     }
 
     public void unselectWaterWindCheckboxes(Checkboxes... checkboxes) {
         for (Checkboxes checkbox : checkboxes) {
-            $$(differentElementsPageCheckboxes).findBy(text(checkbox.checkboxesName)).click();
+            differentElementsPageCheckboxes.findBy(text(checkbox.checkboxesName)).click();
         }
     }
 
@@ -84,11 +84,11 @@ public class DifferentElementsPageSelenide {
     //=============================== Elements checkers ==========================================
 
     public void checkIfNeededElementsVisible() {
-        $$(differentElementsPageCheckboxes).shouldHaveSize(4).shouldHave(texts(String.valueOf(WATER), String.valueOf(EARTH), String.valueOf(WIND), String.valueOf(FIRE)));
-        $$(differentElementsPageRadioButtons).shouldHaveSize(4).shouldHave(texts(String.valueOf(GOLD), String.valueOf(SILVER), String.valueOf(BRONZE), String.valueOf(SELEN)));
-        $$(differentElementsPageUIButtons).shouldHaveSize(2);
-        $$(differentElementsPageUIButtons).get(0).shouldHave(text("DEFAULT BUTTON"));
-        $$(differentElementsPageUIButtons).get(1).shouldHave(value("BUTTON"));
+        differentElementsPageCheckboxes.shouldHaveSize(4).shouldHave(texts(String.valueOf(WATER), String.valueOf(EARTH), String.valueOf(WIND), String.valueOf(FIRE)));
+        differentElementsPageRadioButtons.shouldHaveSize(4).shouldHave(texts(String.valueOf(GOLD), String.valueOf(SILVER), String.valueOf(BRONZE), String.valueOf(SELEN)));
+        differentElementsPageUIButtons.shouldHaveSize(2);
+        differentElementsPageUIButtons.get(0).shouldHave(text("DEFAULT BUTTON"));
+        differentElementsPageUIButtons.get(1).shouldHave(value("BUTTON"));
     }
 
     public void checkIfRightSectionVisible() {
@@ -98,7 +98,6 @@ public class DifferentElementsPageSelenide {
     public void checkIfLeftSectionVisible() {
         $(differentElementsPageLeftSection).isDisplayed();
     }
-
 
     public void checkIfLogPanelContainsCheckboxStatus(Checkboxes... checkboxes) {
 
@@ -117,11 +116,11 @@ public class DifferentElementsPageSelenide {
     }
 
     public void checkIfLogPanelContainsRadioButtonStatusText(Radiobuttons radiobuttons) {
-        $(differentElementsPageLogsPanel).shouldBe(visible).shouldHave(text(String.valueOf(METAL) + VALUE_CHANGED_TO + radiobuttons.radiobuttonsType));
+        differentElementsPageLogsPanel.shouldBe(visible).shouldHave(text(String.valueOf(METAL) + VALUE_CHANGED_TO + radiobuttons.radiobuttonsType));
     }
 
     public void checkIfLogPanelContainsDropdownStatusText(Dropdowns dropdowns) {
-        $(differentElementsPageLogsPanel).shouldBe(visible).shouldHave(text(String.valueOf(COLORS) + VALUE_CHANGED_TO + dropdowns.dropdownsColor));
+        differentElementsPageLogsPanel.shouldBe(visible).shouldHave(text(String.valueOf(COLORS) + VALUE_CHANGED_TO + dropdowns.dropdownsColor));
     }
 }
 
