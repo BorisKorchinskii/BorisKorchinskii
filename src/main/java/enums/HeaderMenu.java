@@ -14,16 +14,17 @@ public enum HeaderMenu {
     HEADER_DIFFERENT_ELEMENTS("DIFFERENT ELEMENTS"),
     HEADER_PERFORMANCE("PERFORMANCE");
 
-    String headerCategoryName;
+    public String name;
+
 
     HeaderMenu(String name) {
-        headerCategoryName = name;
+        this.name = name;
     }
 
     public static List<String> getHeaderCategoriesList() {
         List<String> result = new ArrayList<>();
         for (HeaderMenu category : HeaderMenu.values()) {
-            result.add(category.headerCategoryName);
+            result.add(category.name);
         }
         return result;
     }

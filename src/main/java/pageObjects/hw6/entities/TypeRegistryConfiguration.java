@@ -1,0 +1,29 @@
+package pageObjects.hw6.entities;
+
+import cucumber.api.TypeRegistry;
+import cucumber.api.TypeRegistryConfigurer;
+import io.cucumber.datatable.DataTableType;
+
+import java.util.Locale;
+import java.util.Map;
+
+import static java.util.Locale.ENGLISH;
+
+public class TypeRegistryConfiguration implements TypeRegistryConfigurer {
+
+    @Override
+    public Locale locale() {
+        return ENGLISH;
+    }
+
+    @Override
+    public void configureTypeRegistry(TypeRegistry typeRegistry) {
+        typeRegistry.defineDataTableType(new DataTableType(
+                UsersFromTable.class, (Map<String, String> row) -> new UsersFromTable(
+                Integer.parseInt(row.get("number")),
+                row.get("user"),
+                row.get("description")
+        )
+        ));
+    }
+}

@@ -6,7 +6,7 @@ import pageObjects.hw4.base.Header;
 import pageObjects.hw4.base.LeftSection;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static enums.WebLinks.INDEX_PAGE;
+import static enums.WebLinks.HOME_PAGE;
 import static org.testng.Assert.assertEquals;
 
 public class HomePageSelenide {
@@ -22,7 +22,7 @@ public class HomePageSelenide {
     //=============================== Actions methods ========================================
 
     public void navigateToPage() {
-        Selenide.open(INDEX_PAGE.navigateTo);
+        Selenide.open(HOME_PAGE.navigateTo);
     }
 
     public void checkIfTitleIsVisible() {

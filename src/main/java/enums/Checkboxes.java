@@ -6,6 +6,7 @@ public enum Checkboxes {
 
     public String checkboxesName;
     public int checkboxesPosition;
+    public static int size = 4;
 
     Checkboxes(String checkboxesName, int checkboxesPosition) {
         this.checkboxesName = checkboxesName;

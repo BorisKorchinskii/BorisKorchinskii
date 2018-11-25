@@ -6,6 +6,7 @@ public enum Radiobuttons {
 
     public String radiobuttonsType;
     public int radiobuttonsPosition;
+    public static int size = 4;
 
     Radiobuttons(String radiobuttonsType, int radiobuttonsPosition) {
         this.radiobuttonsType = radiobuttonsType;

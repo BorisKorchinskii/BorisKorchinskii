@@ -6,11 +6,12 @@ public enum Users {
 
     public String login;
     public String password;
-    public String isDisplayed;
+    public String name;
 
-    Users(String login, String password, String isDisplayed) {
+    Users(String login, String password, String name) {
         this.login = login;
         this.password = password;
-        this.isDisplayed = isDisplayed;
+        this.name = name;
     }
 }
+

@@ -61,7 +61,7 @@ public class Header {
 
 
     public void userIsLogged(Users users) {
-        loggedinUserName.shouldHave(text(users.isDisplayed));
+        loggedinUserName.shouldHave(text(users.name));
     }
 
     public void checkServiceHeaderContainsOptions() {

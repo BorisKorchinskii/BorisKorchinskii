@@ -9,6 +9,7 @@ public enum Dropdowns {
 
     public String dropdownsColor;
     public int dropdownsPosition;
+    public static String category = "Colors";
 
     Dropdowns(String dropdownsColor, int dropdownsPosition) {
         this.dropdownsColor = dropdownsColor;

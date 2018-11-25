@@ -14,16 +14,16 @@ public enum LeftSectionMenu {
     SERVICE_DIFFERENT_ELEMENTS("Different elements"),
     SERVICE_PERFORMANCE("Performance");
 
-    String leftSectionCategoryName;
+    String name;
 
     LeftSectionMenu(String name) {
-        leftSectionCategoryName = name;
+        this.name = name;
     }
 
     public static List<String> getLeftSectionCategoriesList() {
         List<String> result = new ArrayList<>();
         for (LeftSectionMenu category : LeftSectionMenu.values()) {
-            result.add(category.leftSectionCategoryName);
+            result.add(category.name);
         }
         return result;
     }

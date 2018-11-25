@@ -7,12 +7,9 @@ import enums.Dropdowns;
 import enums.Radiobuttons;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 import static enums.Checkboxes.*;
 import static enums.Logging.*;
 import static enums.Radiobuttons.*;
