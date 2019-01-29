@@ -4,6 +4,7 @@ public class User {
 
     public String login;
     public String password;
+    // TODO 'isBlahBlahBlah' fields/methods should be bool
     public String isDisplayed;
 
     public User(String login, String password, String isDisplayed) {
